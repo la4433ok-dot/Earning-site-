@@ -1,421 +1,703 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Smart Money Pro | Earn USDT</title>
-    
-    <!-- Telegram & Ad SDKs -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>আমাদের টেলিগ্রাম চ্যানেলে জয়েন করোন | AdsGram ইন্টিগ্রেটেড</title>
+    <!-- AdsGram SDK -->
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
-    <script src='//libtl.com/sdk.js' data-zone='9730885' data-sdk='show_9730885'></script>
-    <script src='//libtl.com/sdk.js' data-zone='9500387' data-sdk='show_9500387'></script>
-    <script src='//libtl.com/sdk.js' data-zone='9715370' data-sdk='show_9715370'></script>
-    
-    <!-- Tailwind + Fonts + Icons -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <style>
-        * { font-family: 'Inter', sans-serif; }
-        
-        /* PURE DARK MODE ONLY - No light mode */
-        body { 
-            background: #0f172a; 
-            color: #f1f5f9; 
-            padding-bottom: 70px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .card-bg {
-            background: #1e293b;
-            border: 1px solid #334155;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            transition: all 0.2s;
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Roboto', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0a0f1f, #02050c);
+            min-height: 100vh;
+            padding: 24px 16px 100px;
         }
-        
-        .input-field {
-            background: #334155;
-            border: 1px solid #475569;
-            color: #f1f5f9;
+
+        .gallery-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
         }
-        
-        .input-field::placeholder {
-            color: #94a3b8;
+
+        /* সার্চ বার */
+        .search-section {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
         }
-        
-        .bottom-nav {
-            background: #1e293b;
-            border-color: #334155;
+        .search-box {
+            background: #111827cc;
+            backdrop-filter: blur(12px);
+            border-radius: 70px;
+            padding: 6px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 500px;
         }
-        
-        .btn-accent {
-            background: #f97316;
+        .search-box input {
+            background: transparent;
+            border: none;
+            padding: 14px 8px;
+            font-size: 1rem;
             color: white;
+            width: 100%;
+            outline: none;
+        }
+        .search-box input::placeholder {
+            color: #9ca3af;
+        }
+        .search-box button {
+            background: linear-gradient(95deg, #2563eb, #4f46e5);
+            border: none;
+            border-radius: 50px;
+            padding: 8px 22px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .search-box button:hover {
+            background: #3b82f6;
+        }
+
+        /* থাম্বনেল গ্রিড */
+        .thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 26px;
+            margin-bottom: 50px;
+        }
+
+        /* ভিডিও কার্ড */
+        .video-card {
+            background: linear-gradient(145deg, #0f172a, #0a0f1c);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -10px black;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(59,130,246,0.3);
+            position: relative;
+        }
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px -8px #3b82f6, 0 0 0 1px #3b82f680;
+        }
+
+        .thumbnail-wrapper {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            overflow: hidden;
+        }
+        .thumbnail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .video-card:hover .thumbnail-img {
+            transform: scale(1.04);
+        }
+
+        /* লাল গোলাকার ভিডিও আইকন */
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            background: #e11d48;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 4px rgba(225,29,72,0.5);
+            pointer-events: none;
+            z-index: 2;
+        }
+        .video-icon::after {
+            content: "▶";
+            font-size: 26px;
+            color: white;
+            margin-left: 4px;
+            font-weight: bold;
+        }
+
+        /* সিরিয়াল নাম্বার ব্যাজ (উপরে বামে) */
+        .serial-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #f97316, #dc2626);
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 5px 12px;
+            border-radius: 60px;
+            z-index: 15;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            font-family: monospace;
+            letter-spacing: 0.5px;
+            border: 1px solid #ffb347;
+            pointer-events: none;
+        }
+
+        /* বাটন বার */
+        .button-bar {
+            display: flex;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #0b1020;
+            border-top: 1px solid #1e2a4a;
+        }
+        .play-btn, .download-btn {
+            flex: 1;
+            padding: 10px 0;
+            border-radius: 60px;
             font-weight: 600;
-            transition: transform 0.1s ease;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
-        
-        .btn-accent:active { transform: scale(0.97); }
-        
-        .main-page, .sub-page { display: none; }
-        .main-page.active, .sub-page.active { display: block; animation: fade 0.25s ease; }
-        
-        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-        
-        .bottom-nav a.active { color: #f97316; }
-        
-        .notification-dot {
-            position: absolute; top: -2px; right: -2px; width: 10px; height: 10px;
-            background: #ef4444; border-radius: 50%; display: none;
+        .play-btn {
+            background: linear-gradient(95deg, #2563eb, #4f46e5);
+            color: white;
         }
-        
-        .cooldown-timer { font-size: 12px; color: #facc15; margin-left: 6px; }
-        .ad-zone-indicator { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 2px 8px; font-size: 10px; }
-        
-        /* Header styling */
-        header {
+        .play-btn:hover {
+            background: #3b82f6;
+            box-shadow: 0 4px 12px #2563eb;
+        }
+        .download-btn {
             background: #1e293b;
-            border-bottom: 1px solid #334155;
+            color: #e2e8f0;
+            border: 1px solid #334155;
+        }
+        .download-btn:hover {
+            background: #2d3a5e;
+        }
+
+        /* পেজিনেশন - ছবির মতো ডিজাইন, ব্যাকগ্রাউন্ড সহ, ১ থেকে ১০ পর্যন্ত */
+        .pagination-container {
+            margin: 20px auto 40px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            background: rgba(10, 15, 30, 0.7);
+            backdrop-filter: blur(16px);
+            padding: 12px 24px;
+            border-radius: 80px;
+            width: fit-content;
+            border: 1px solid rgba(249, 115, 22, 0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         
-        header h1, header i {
-            color: #f1f5f9;
+        .page-number {
+            background: #111827;
+            color: #cbd5e6;
+            min-width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #f97316;
+            box-shadow: 0 2px 6px black;
+            padding: 0 6px;
         }
-        
-        /* Text colors for dark mode */
-        .text-slate-800 { color: #f1f5f9 !important; }
-        .text-gray-600 { color: #cbd5e1 !important; }
-        .text-gray-500 { color: #94a3b8 !important; }
-        .text-gray-700 { color: #cbd5e1 !important; }
-        
-        /* Gradient buttons always have white text */
-        .bg-gradient-to-r, .bg-orange-500, .bg-purple-600, .bg-cyan-600, .bg-sky-500 {
-            color: white !important;
+        .page-number.active-page {
+            background: linear-gradient(145deg, #f97316, #ea580c);
+            color: white;
+            border-color: #facc15;
+            box-shadow: 0 0 12px #f97316;
+            transform: scale(1.05);
         }
-        
-        /* White background buttons with colored text */
-        .bg-white.text-orange-600 {
-            background: white !important;
-            color: #f97316 !important;
+        .page-number:hover:not(.active-page) {
+            background: #f97316;
+            transform: translateY(-2px);
         }
-        .bg-white.text-purple-700 {
-            background: white !important;
-            color: #7c3aed !important;
+
+        /* টেলিগ্রাম গ্লো লোগো */
+        .telegram-fixed {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            pointer-events: none;
         }
-        .bg-white.text-blue-700 {
-            background: white !important;
-            color: #2563eb !important;
+        .telegram-card {
+            background: rgba(0, 20, 40, 0.9);
+            backdrop-filter: blur(16px);
+            border-radius: 100px;
+            padding: 10px 26px;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            pointer-events: auto;
+            cursor: pointer;
+            border: 1px solid #2a6df0;
+            box-shadow: 0 0 12px #0088cc, 0 0 20px #3b82f6;
+            animation: telegramPulse 1.8s infinite alternate;
+            transition: 0.2s;
         }
-        .bg-white.text-blue-600 {
-            background: white !important;
-            color: #2563eb !important;
+        @keyframes telegramPulse {
+            0% { box-shadow: 0 0 5px #2a6df0, 0 4px 15px rgba(0,0,0,0.4); border-color: #2a6df0; }
+            100% { box-shadow: 0 0 28px #3b82f6, 0 0 35px #0088cc; border-color: #60a5fa; background: #0a2a4ae6; }
         }
-        
-        /* Green button styling */
-        .bg-green-600 {
-            background: #16a34a !important;
-            color: white !important;
+        .telegram-card:hover {
+            transform: scale(1.03);
+            animation: none;
+            box-shadow: 0 0 35px #3b82f6;
         }
-        .bg-green-600:hover {
-            background: #15803d !important;
+        .telegram-logo {
+            width: 36px;
+            height: 36px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.6-1.38-.97-2.23-1.56-.99-.69-.35-1.07.22-1.69.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.13-.05-.18s-.17-.03-.24-.01c-.1.02-1.72 1.09-4.86 3.2-.46.32-.88.47-1.25.46-.41-.01-1.2-.23-1.79-.42-.73-.24-1.31-.37-1.26-.78.03-.22.33-.44.91-.67 3.57-1.55 5.94-2.57 7.13-3.05 3.39-1.36 4.09-1.6 4.55-1.6.1 0 .33.02.48.15.12.1.15.24.17.37-.01.1-.02.19-.03.29z"/></svg>') no-repeat center;
+            background-size: contain;
+            filter: drop-shadow(0 0 6px cyan);
         }
-        
-        /* Red button for cooldown */
-        .bg-red-600 {
-            background: #dc2626 !important;
-            color: white !important;
+        .telegram-text {
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px #3b82f6;
         }
-        
-        /* Modal styling */
-        #custom-alert > div {
-            background: #1e293b;
-            color: #f1f5f9;
+        .info-note {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #ffb347;
+            background: #00000066;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 5px 16px;
+            border-radius: 40px;
         }
-        
-        /* Remove dark mode toggle button */
-        #dark-mode-toggle {
-            display: none;
+        /* কাউন্টডাউন স্টাইল */
+        .countdown-tag {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: #000000aa;
+            backdrop-filter: blur(12px);
+            padding: 8px 16px;
+            border-radius: 40px;
+            color: #f97316;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 999;
+            font-family: monospace;
+            border: 1px solid #f97316;
+            pointer-events: none;
         }
-        
-        /* Support button removed - no floating button */
-        
-        /* Select dropdown styling */
-        select.input-field option {
-            background: #1e293b;
-            color: #f1f5f9;
+        @media (max-width: 680px) {
+            .page-number { min-width: 38px; height: 38px; font-size: 0.9rem; }
+            .serial-badge { font-size: 0.7rem; padding: 3px 10px; top: 8px; left: 8px; }
+            .countdown-tag { bottom: 90px; font-size: 0.7rem; padding: 4px 12px; }
+        }
+        /* লোডিং ইফেক্ট */
+        .ad-loading-msg {
+            position: fixed;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000000cc;
+            color: #ffb347;
+            padding: 6px 14px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            z-index: 1100;
+            backdrop-filter: blur(8px);
+            pointer-events: none;
         }
     </style>
 </head>
-<body class="max-w-md mx-auto relative">
+<body>
 
-    <!-- Loader -->
-    <div id="loader" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-        <div class="animate-spin rounded-full h-12 w-12 border-4 border-orange-500 border-t-transparent"></div>
-    </div>
-
-    <!-- Main Container -->
-    <div id="app-container" class="min-h-screen main-page active">
-        <header class="sticky top-0 z-10 flex justify-between items-center p-4 bg-slate-800/95 backdrop-blur-md border-b border-gray-700">
-            <h1 class="text-xl font-bold text-white">Smart Money Pro</h1>
-            <div class="flex gap-4 items-center">
-                <!-- Dark mode toggle hidden - permanent dark mode -->
-                <button id="dark-mode-toggle" style="display: none;"></button>
-                <div id="notification-bell" class="relative cursor-pointer">
-                    <i data-lucide="bell" class="w-5 h-5 text-white"></i>
-                    <div id="notification-dot" class="notification-dot"></div>
-                </div>
-                <i data-lucide="user" class="w-5 h-5 cursor-pointer text-white" onclick="navigateTo('profile-page')"></i>
-            </div>
-        </header>
-
-        <main>
-            <!-- HOME PAGE -->
-            <div id="home-page" class="p-4 space-y-6 sub-page active">
-                <div class="card-bg p-5 rounded-2xl flex justify-between items-center">
-                    <div>
-                        <p class="text-sm text-gray-400">Your Balance</p>
-                        <p class="text-3xl font-black text-white">$<span id="coin-balance">0.00</span> USDT</p>
-                    </div>
-                    <button id="home-withdraw-btn" class="bg-orange-500 text-white font-semibold px-5 py-2 rounded-xl shadow-md hover:bg-orange-600 transition">Withdraw</button>
-                </div>
-
-                <section>
-                    <div class="flex justify-between items-center mb-2">
-                        <div>
-                            <h2 class="text-lg font-bold text-white">Daily Tasks</h2>
-                            <p class="text-xs text-gray-400">Complete tasks & earn USDT</p>
-                        </div>
-                        <p class="text-xs text-gray-400">Ads left: <span id="ads-left-count">0/3</span></p>
-                    </div>
-                    <div class="space-y-3">
-                        <!-- AdsGram Ad Button -->
-                        <div class="bg-gradient-to-r from-amber-500 to-orange-600 p-4 rounded-xl flex justify-between items-center text-white shadow-md">
-                            <div class="flex gap-3 items-center">
-                                <span class="text-3xl">🎬</span>
-                                <div>
-                                    <h3 class="font-bold">Watch AdsGram Ad</h3>
-                                    <p class="text-xs text-white/90">+0.05 USDT</p>
-                                </div>
-                            </div>
-                            <button id="ad-claim-btn" class="bg-white text-orange-600 font-bold px-5 py-2 rounded-xl text-sm shadow hover:bg-gray-100 transition">Claim</button>
-                        </div>
-                        
-                        <!-- Monetag Multi-Zone Ad Button -->
-                        <div class="bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl flex justify-between items-center text-white shadow-md">
-                            <div class="flex gap-3 items-center">
-                                <span class="text-3xl">🎯</span>
-                                <div>
-                                    <h3 class="font-bold">Watch Monetag Ad</h3>
-                                    <p class="text-xs text-white/90">+0.05 USDT <span id="zone-indicator" class="ad-zone-indicator ml-1 bg-black/30">Zone 1/3</span></p>
-                                </div>
-                            </div>
-                            <button id="monetag-ad-btn" class="bg-white text-purple-700 font-bold px-5 py-2 rounded-xl text-sm shadow hover:bg-gray-100 transition">Claim</button>
-                        </div>
-                        
-                        <!-- Daily Jobs -->
-                        <div class="bg-gradient-to-r from-cyan-600 to-blue-700 p-4 rounded-xl flex justify-between items-center text-white shadow-md">
-                            <div class="flex gap-3"><span class="text-3xl">💼</span><div><h3 class="font-bold">Daily Jobs</h3><p class="text-xs text-white/90">Watch & earn 0.05 USDT each</p></div></div>
-                            <button class="bg-white text-blue-700 font-bold px-5 py-2 rounded-xl text-sm shadow hover:bg-gray-100 transition" onclick="navigateTo('daily-jobs-page')">Start</button>
-                        </div>
-                        
-                        <!-- Telegram Channel -->
-                        <div class="bg-gradient-to-r from-sky-500 to-blue-600 p-4 rounded-xl flex justify-between items-center text-white shadow-md">
-                            <div class="flex gap-3"><span class="text-3xl">📢</span><div><h3 class="font-bold">Join Official Channel</h3><p class="text-xs text-white/90">Get latest updates</p></div></div>
-                            <button id="telegram-channel-btn" class="bg-white text-blue-600 font-bold px-5 py-2 rounded-xl text-sm shadow hover:bg-gray-100 transition">Join</button>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- WALLET PAGE -->
-            <div id="wallet-page" class="p-4 space-y-5 sub-page">
-                <h2 class="text-xl font-bold text-center text-white">My Wallet</h2>
-                <div class="card-bg p-5 rounded-2xl">
-                    <h3 class="font-semibold mb-2 text-white">Withdraw Earnings</h3>
-                    <p class="text-sm text-gray-300">Current Balance: <span class="font-bold text-orange-400">$<span id="wallet-coin-balance">0.00</span> USDT</span></p>
-                    <p class="text-sm text-gray-400 mb-3">Min withdrawal: <span id="min-withdrawal-info">20</span> USDT</p>
-                    <input id="withdraw-amount" type="number" placeholder="Enter amount (USDT)" class="w-full p-3 rounded-xl input-field mb-3">
-                    <select id="withdraw-method" class="w-full p-3 rounded-xl input-field mb-3">
-                        <option value="">Select method</option>
-                        <option value="Bkash">Bkash</option>
-                        <option value="Nagad">Nagad</option>
-                        <option value="Rocket">Rocket</option>
-                        <option value="Bank">Bank Transfer</option>
-                    </select>
-                    <div id="payment-details-container"></div>
-                    <button id="withdraw-btn" class="w-full p-3 rounded-xl btn-accent mt-3">Request Withdrawal</button>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-2 text-white">Withdrawal History</h3>
-                    <div id="withdrawal-history-list" class="space-y-2"></div>
-                </div>
-            </div>
-
-            <!-- PROFILE PAGE -->
-            <div id="profile-page" class="p-4 space-y-5 sub-page">
-                <h2 class="text-xl font-bold text-center text-white">Profile</h2>
-                <div class="flex flex-col items-center">
-                    <img id="profile-photo" src="https://placehold.co/100x100/f97316/white?text=U" class="rounded-full w-24 h-24 border-2 border-orange-400">
-                    <h2 id="profile-name" class="text-xl font-bold mt-2 text-white">User</h2>
-                    <p id="profile-username" class="text-gray-400">@username</p>
-                </div>
-                <div class="card-bg p-4 rounded-2xl">
-                    <h3 class="font-semibold mb-2 text-white">Account Info</h3>
-                    <div class="flex justify-between text-sm"><span class="text-gray-300">Joined via:</span><span id="joined-via" class="text-white">Telegram</span></div>
-                    <div class="flex justify-between text-sm mt-1"><span class="text-gray-300">User ID:</span><span id="profile-user-id" class="text-white">---</span></div>
-                </div>
-                <div id="admin-access" class="hidden">
-                    <button onclick="navigateTo('admin-panel')" class="w-full p-3 rounded-xl bg-purple-700 text-white font-bold">Admin Panel</button>
-                </div>
-            </div>
-            
-            <!-- NOTIFICATIONS -->
-            <div id="notifications-page" class="p-4 space-y-4 sub-page">
-                <h2 class="text-xl font-bold text-center text-white">Inbox</h2>
-                <div id="notifications-list" class="space-y-3"></div>
-            </div>
-
-            <!-- DAILY JOBS (20 jobs) -->
-            <div id="daily-jobs-page" class="p-4 sub-page">
-                <div class="flex items-center gap-3 mb-4">
-                    <button onclick="navigateTo('home-page')" class="text-gray-300"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
-                    <h2 class="text-xl font-bold text-white">Daily Jobs</h2>
-                </div>
-                <div class="card-bg p-4 rounded-xl text-center mb-4">
-                    <p class="text-sm text-gray-300">Each job: watch ad for 15 sec → earn <strong class="text-orange-400">0.05 USDT</strong> (cooldown 8h)</p>
-                </div>
-                <div id="daily-jobs-container" class="space-y-3"></div>
-            </div>
-
-            <!-- ADMIN PANEL -->
-            <div id="admin-panel" class="p-4 space-y-5 sub-page">
-                <div class="flex items-center gap-3"><button onclick="navigateTo('profile-page')" class="text-gray-300"><i data-lucide="arrow-left" class="w-5 h-5"></i></button><h2 class="text-xl font-bold text-white">Admin Panel</h2></div>
-                <div class="card-bg p-4 rounded-2xl">
-                    <h3 class="font-semibold mb-2 text-white">Send Bonus to All</h3>
-                    <input id="bonus-amount" type="number" placeholder="Amount (USDT)" class="w-full p-3 rounded-xl input-field mb-3">
-                    <button id="send-bonus-btn" class="w-full bg-green-600 text-white p-3 rounded-xl font-bold hover:bg-green-700 transition">Distribute Bonus</button>
-                </div>
-                <div class="card-bg p-4 rounded-2xl">
-                    <h3 class="font-semibold text-white">Zone Status</h3>
-                    <div class="text-sm space-y-1 mt-2">
-                        <div class="text-gray-300">Zone 1 (9730885): <span id="zone1-status" class="text-green-400">✅ Active</span></div>
-                        <div class="text-gray-300">Zone 2 (9500387): <span id="zone2-status" class="text-green-400">✅ Active</span></div>
-                        <div class="text-gray-300">Zone 3 (9715370): <span id="zone3-status" class="text-green-400">✅ Active</span></div>
-                        <div class="border-t border-gray-700 pt-2 mt-2 text-gray-300">Today Monetag: <span id="today-monetag-count">0/30</span> | AdsGram: <span id="today-adsgram-count">0/3</span></div>
-                    </div>
-                </div>
-                <button id="send-manual-report" class="w-full bg-indigo-600 text-white p-3 rounded-xl font-bold hover:bg-indigo-700 transition">📤 Send Manual Report</button>
-            </div>
-        </main>
-
-        <nav class="bottom-nav fixed bottom-0 max-w-md mx-auto w-full grid grid-cols-3 py-2 card-bg border-t border-gray-700">
-            <a href="#" class="nav-link active flex flex-col items-center" data-page="home-page"><i data-lucide="home" class="w-5 h-5"></i><span class="text-xs text-gray-300">Home</span></a>
-            <a href="#" class="nav-link flex flex-col items-center" data-page="wallet-page"><i data-lucide="wallet" class="w-5 h-5"></i><span class="text-xs text-gray-300">Wallet</span></a>
-            <a href="#" class="nav-link flex flex-col items-center" data-page="daily-jobs-page"><i data-lucide="briefcase" class="w-5 h-5"></i><span class="text-xs text-gray-300">Jobs</span></a>
-        </nav>
-    </div>
-
-    <!-- Custom Alert Modal -->
-    <div id="custom-alert" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-        <div class="bg-slate-800 rounded-2xl p-6 w-full max-w-xs text-center">
-            <p id="alert-message" class="text-white mb-4"></p>
-            <button id="alert-ok-btn" class="btn-accent px-5 py-2 rounded-xl">OK</button>
+<div class="gallery-container">
+    <!-- সার্চ অপশন -->
+    <div class="search-section">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 ভিডিও সার্চ করুন...">
+            <button id="searchBtn">সার্চ</button>
         </div>
     </div>
 
-    <script>
-        // ======================= CONFIGURATION =======================
-        const CONFIG = {
-            app: {
-                name: "Appole X",
-                minWithdrawal: 20,
-                dailyAdLimit: { adsgram: 3, monetag: 30 },
-                adReward: 0.05,
-                dailyJobReward: 0.05,
-                joiningBonus: 0.50
-            },
-            adsgram: { enabled: true, blockId: "int-28195", rewardAmount: 0.05 },
-            monetag: { enabled: true, zones: ['9730885','9500387','9715370'], rewardAmount: 0.05 },
-            social: { telegram: "https://t.me/+tLB334Ko71tjY2Y1" },
-            bot: { adminChatId: "7793213912", reportChannelId: "-1003331749273" },
-            support: { telegraphUrl: "https://t.me/smartmoneypro_bot" },
-            dailyJobLinks: {
-                job1:"https://omg10.com/4/9717825", job2:"https://omg10.com/4/9429975", job3:"https://omg10.com/4/9446627",
-                job4:"https://encouragementglutton.com/vc1xew7t?key=9a97915b9241db71d8f53e974a75a975", job5:"https://www.effectivegatecpm.com/hjt54qy2f?key=850e1a1f668e2f8cf8fbc7662317181b",
-                job6:"https://omg10.com/4/9717825", job7:"https://omg10.com/4/10338067", job8:"https://encouragementglutton.com/uaw9tkid6b?key=c49281ab14f9eb6a872d63173ea7bf9c",
-                job9:"https://omg10.com/4/9570590", job10:"https://t.me/o0Uq6h5R0p80ZGE1bot?startapp", job11:"https://omg10.com/4/9725607",
-                job12:"https://omg10.com/4/9429975", job13:"https://www.effectivegatecpm.com/rz01szx1?key=3dfb2fe6741dd7e2c5f8969bd11701c3",
-                job14:"https://www.effectivegatecpm.com/hjt54qy2f?key=850e1a1f668e2f8cf8fbc7662317181b", job15:"https://www.effectivegatecpm.com/mqb7j0cy4?key=41aca66d8ffc76b0227f65cb991591ad",
-                job16:"https://omg10.com/4/9446627", job17:"https://omg10.com/4/9429975", job18:"https://omg10.com/4/9717825",
-                job19:"https://omg10.com/4/9717825", job20:"https://omg10.com/4/9446627"
+    <!-- পেজিনেশন: ১ থেকে ১০ পর্যন্ত, প্রতিটি আলাদা লিংক -->
+    <div id="paginationWrapper" class="pagination-container"></div>
+
+    <!-- থাম্বনেল গ্রিড -->
+    <div class="thumb-grid" id="thumbGrid"></div>
+
+    <div class="info-note">💣💣💣💣💣💣💣💣💣💣</div>
+</div>
+
+<!-- টেলিগ্রাম গ্লো লোগো -->
+<div class="telegram-fixed">
+    <div class="telegram-card" id="telegramGlowBtn">
+        <div class="telegram-logo"></div>
+        <div>
+            <span class="telegram-text">✨ জয়েন করুন</span>
+        </div>
+    </div>
+</div>
+
+<div id="countdownDisplay" class="countdown-tag"></div>
+<div id="adLoadingMsg" class="ad-loading-msg" style="display: none;">📺 বিজ্ঞাপন লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+
+<script>
+    // ============================================================
+    // ★★★ কাস্টমাইজেবল লিংক ও কনফিগ ★★★
+    // ============================================================
+    // পেজিনেশন ১-১০ এর জন্য নির্দিষ্ট লিংক (প্রতিটি নাম্বারে ভিন্ন লিংক ওপেন হবে)
+    const PAGINATION_LINKS = {
+        1: "https://omg10.com/4/9446627",
+        2: "https://omg10.com/4/9429975",
+        3: "https://free-paid-group.vercel.app/",
+        4: "https://t.co/twb6TDkLcT",
+        5: "https://free-paid-group.vercel.app/",
+        6: "https://omg10.com/4/9717825",
+        7: "https://video-zone.pages.dev/",
+        8: "https://omg10.com/4/9429975",
+        9: "https://omg10.com/4/9429975",
+        10: "https://omg10.com/4/9717825"
+    };
+    
+    // ডাইরেক্ট ফুলস্ক্রিন এড লিংক - ৮ সেকেন্ড পর অটো রিডাইরেক্ট হবে (কোন ক্লিক ছাড়া)
+    const FULLSCREEN_AD_URL = "https://omg10.com/4/9429975";
+    
+    // টেলিগ্রাম জয়েন লিংক
+    const TELEGRAM_URL = "https://t.me/IobRcYvU2MGU9V1bot";
+    
+    // ========== ভিডিও ডাটা (বাংলা কন্টেন্ট, থাম্বনেল) ==========
+    const VIDEO_DATA = [
+        { serial: 1, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 👍", thumb: "https://i.ibb.co.com/twjVb6hp/IMG-20260428-221038.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9429975" },
+        { serial: 2, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📹", thumb: "https://i.ibb.co.com/Psw21Ryz/IMG-20260428-221006.jpg", videoUrl: "https://omg10.com/4/9446627", downloadUrl: "https://bacchadervideo.pages.dev/" },
+        { serial: 3, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎬", thumb: "https://i.ibb.co.com/VP3VRJB/IMG-20260428-220952.jpg", videoUrl: "https://free-paid-group.vercel.app/", downloadUrl: "https://omg10.com/4/9429975" },
+        { serial: 4, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📀", thumb: "https://i.ibb.co.com/cS1CXnrx/IMG-20260428-220913.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://omg10.com/4/9717825" },
+        { serial: 5, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎥", thumb: "https://i.ibb.co.com/FrM6TDX/IMG-20260428-220840.jpg", videoUrl: "https://omg10.com/4/9446627", downloadUrl: "https://free-paid-group.vercel.app/" },
+        { serial: 6, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📽️", thumb: "https://i.ibb.co.com/Xr3x1gDf/IMG-20260428-220936.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://omg10.com/4/9717825" },
+        { serial: 7, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎞️", thumb: "https://i.ibb.co.com/4ZzgnK67/IMG-20260428-220810.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://free-paid-group.vercel.app/" },
+        { serial: 8, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎦", thumb: "https://i.ibb.co.com/HTcZWfFz/1777392349237.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9429975" },
+        { serial: 9, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🔴", thumb: "https://i.ibb.co.com/XfFn1dqq/Screenshot-2026-04-28-21-57-17-44-4079e20a3332ff1979b45f43e9e5241a.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9446627" },
+        { serial: 10, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন ⚡", thumb: "https://i.ibb.co.com/p6PMVXzK/FB-IMG-1777392115292.jpg", videoUrl: "https://free-paid-group.vercel.app/", downloadUrl: "https://bacchadervideo.pages.dev/" }
+    ];
+
+    // ---------- ADSGRAM ইন্টিগ্রেশন (Rewarded / Interstitial) ----------
+    // ব্লক আইডি int-24718 (প্রদত্ত)
+    let AdsgramAd = null;
+    try {
+        if (typeof window.Adsgram !== 'undefined') {
+            AdsgramAd = window.Adsgram.init({ blockId: "int-24718" });
+            console.log("AdsGram initialized successfully.");
+        } else {
+            console.warn("AdsGram SDK লোড হয়নি, তবে বিজ্ঞাপন ছাড়াই কাজ করবে।");
+        }
+    } catch(e) {
+        console.error("AdsGram init error", e);
+    }
+
+    // বিজ্ঞাপন দেখানোর ফাংশন যা Promise রিটার্ন করে। ইউজার সম্পূর্ণ দেখলে রিসল্ভ, না হলে রিজেক্ট।
+    function showAdsGramAd() {
+        return new Promise((resolve, reject) => {
+            if (!AdsgramAd) {
+                console.warn("AdsGram অবজেক্ট নেই, সরাসরি রিজেক্ট করছি না, তবে বিজ্ঞাপন এড়িয়ে যাওয়া যাবে");
+                reject("SDK not loaded");
+                return;
+            }
+            // বিজ্ঞাপনের সময় লোডিং ইন্ডিকেটর দেখানো
+            const loader = document.getElementById('adLoadingMsg');
+            if (loader) loader.style.display = "block";
+            
+            AdsgramAd.show().then((result) => {
+                if (loader) loader.style.display = "none";
+                console.log("AdsGram বিজ্ঞাপন সম্পন্ন:", result);
+                resolve(true);
+            }).catch((error) => {
+                if (loader) loader.style.display = "none";
+                console.error("AdsGram বিজ্ঞাপন প্রদর্শনে সমস্যা:", error);
+                // বিজ্ঞাপন লোড না হলেও ইউজার পরবর্তী ধাপে যেতে পারে (কোনো বাধা নেই)
+                reject(error);
+            });
+        });
+    }
+
+    // প্রতিটি ক্লিকযোগ্য এলিমেন্টের জন্য "প্রথম ক্লিকে এড, দ্বিতীয় ক্লিকে মূল লিংক" ট্র্যাক রাখার স্টোর
+    // Object Map যেখানে key হচ্ছে এলিমেন্টের একটি ইউনিক আইডি (অথবা রেফারেন্স) -> boolean flag
+    const clickStateMap = new Map(); // true মানে প্রথম ক্লিক ইতিমধ্যে হলে পরবর্তী ক্লিক কাজ করবে।
+
+    // জেনেরিক হ্যান্ডলার ফাংশন: প্রথম ক্লিকে এড দেখায়, দ্বিতীয় ক্লিকে মূল কাজ (লিংক খোলা) করে।
+    async function handleWithAdFirst(event, targetElement, onSecondClickAction) {
+        // event propagation বন্ধ রাখা
+        event.stopPropagation();
+        event.preventDefault?.();
+        
+        // বর্তমান এলিমেন্টের জন্য state দেখি
+        let hasClickedBefore = clickStateMap.get(targetElement) || false;
+        
+        if (!hasClickedBefore) {
+            // প্রথম ক্লিক: এড দেখান এবং স্টেট আপডেট করুন
+            clickStateMap.set(targetElement, true);
+            // ছোট ভিজুয়াল ফিডব্যাক - বাটনে টেক্সট পরিবর্তন না করে শুধু ব্যস্ত ইঙ্গিত
+            const originalText = targetElement.innerText;
+            if (targetElement.innerText && (targetElement.classList.contains('play-btn') || targetElement.classList.contains('download-btn'))) {
+                targetElement.innerText = "⏳ দেখুন...";
+                setTimeout(() => { if(targetElement) targetElement.innerText = originalText; }, 1500);
+            }
+            try {
+                await showAdsGramAd();
+                // এড দেখানোর পর সফলভাবে দ্বিতীয় ক্লিক উপলব্ধ হবে, কিন্তু পরবর্তী ক্লিকে আসল লিংকে যাবে।
+                // এখন কিছু করতে হবে না, শুধু ইউজারকে জানাবেন যে এখন দ্বিতীয় ক্লিকে কাজ হবে।
+                alert("✅ বিজ্ঞাপন সম্পূর্ণ! এখন আবার ক্লিক করে ভিডিও/ডাউনলোড লিংকে যান।");
+            } catch (err) {
+                // বিজ্ঞাপন ব্যর্থ হলেও ইউজারকে দ্বিতীয় ক্লিকের সুযোগ দেওয়া ভালো, সেক্ষেত্রেও স্টেট true করে দিই যাতে পরবর্তী ক্লিকে লিংক খোলে।
+                clickStateMap.set(targetElement, true);
+                alert("⚠️ বিজ্ঞাপন লোড হয়নি, তবে দ্বিতীয় ক্লিকে লিংক ওপেন হবে। আবার ক্লিক করুন।");
+            }
+        } else {
+            // দ্বিতীয় বা পরবর্তী ক্লিক: আসল ক্রিয়া (লিংক খোলা, ডাউনলোড ইত্যাদি)
+            if (onSecondClickAction) {
+                onSecondClickAction();
+            }
+            // ক্লিকের পর আবার রিসেট? না, আমরা চাই প্রতি আলাদা এলিমেন্টের জন্য প্রথম ক্লিকে এড, দ্বিতীয় ক্লিকে লিংক,
+            // তৃতীয় ক্লিকে আবার এড? সেটা ভাল এক্সপেরিয়েন্স না। বরং প্রতি এলিমেন্টের জন্য শুধু একবার এড বাধ্যতামূলক রাখা ভাল।
+            // মূল ফাংশনালিটি অনুযায়ী: প্রতিটি বাটন/কার্ডে প্রথম ক্লিকে শুধু একবার এড, তারপর সবসময় দ্বিতীয় ক্লিকে লিংক কাজ করবে।
+            // কিন্তু যদি ইউজার আবার পরে এড দেখতে চায়? না, কাঙ্খিত আচরণ নয়। আমরা এড একবার দেখানোর পর সেই এলিমেন্টে পরবর্তী সব ক্লিক সরাসরি কাজ করবে।
+            // সেক্ষেত্রে state true থাকতে পারে এবং ভবিষ্যতে সব ক্লিক একশন করবে। এটাই যুক্তিযুক্ত।
+        }
+    }
+
+    // প্রতিটি ভিডিও কার্ডের জন্য হ্যান্ডলার (কার্ড ক্লিক)
+    function bindCardClickWithAd(cardElement, videoObj) {
+        // মূল একশন: ভিডিও প্লে (videoUrl)
+        const primaryAction = () => {
+            if (confirm(`"${videoObj.title}" ভিডিওটি প্লে করতে চান?`)) {
+                window.open(videoObj.videoUrl, '_blank');
             }
         };
-
-        let currentUser = null, userData = null, currentJobTracking = null;
-        let adsGramReady = false, AdController = null, adsGramCount = 0;
-        let monetagReady = false, monetagCount = 0, currentZoneIndex = 0, isAdShowing = false;
-        let dailyStats = { date: new Date().toISOString().split('T')[0], newUsers:0, totalUsers:0, adsGramWatched:0, monetagWatched:0, jobsCompleted:0, totalWithdrawals:0, totalWithdrawalAmount:0, zoneStats:{'9730885':0,'9500387':0,'9715370':0} };
-        const tg = window.Telegram.WebApp;
-
-        function showAlert(msg) { const a = document.getElementById('custom-alert'); document.getElementById('alert-message').innerText = msg; a.classList.remove('hidden'); document.getElementById('alert-ok-btn').onclick = () => a.classList.add('hidden'); }
-        function saveUser() { if(currentUser) localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userData)); }
-        function loadUserFromStorage(uid) { const raw = localStorage.getItem(`user_${uid}`); return raw ? JSON.parse(raw) : null; }
-        function loadWithdrawals(uid) { return JSON.parse(localStorage.getItem(`withdrawals_${uid}`) || '[]'); }
-        function saveWithdrawal(uid, wd) { let arr = loadWithdrawals(uid); arr.push(wd); localStorage.setItem(`withdrawals_${uid}`, JSON.stringify(arr)); dailyStats.totalWithdrawals++; dailyStats.totalWithdrawalAmount += wd.amount; saveDailyStats(); }
-        function loadDailyJobs(uid) { return JSON.parse(localStorage.getItem(`daily_jobs_${uid}`) || '[]'); }
-        function saveDailyJob(uid, job) { let arr = loadDailyJobs(uid); arr.push(job); localStorage.setItem(`daily_jobs_${uid}`, JSON.stringify(arr)); }
-        function saveDailyStats() { localStorage.setItem(`stats_${dailyStats.date}`, JSON.stringify(dailyStats)); }
-        function loadDailyStats() { const today = new Date().toISOString().split('T')[0]; let saved = localStorage.getItem(`stats_${today}`); if(saved) dailyStats = JSON.parse(saved); else { dailyStats.date=today; dailyStats.totalUsers = Object.keys(localStorage).filter(k=>k.startsWith('user_')).length; saveDailyStats(); } }
-        function incrementStat(stat) { dailyStats[stat]++; saveDailyStats(); }
-        function updateUI() { if(!userData) return; document.getElementById('coin-balance').innerText = userData.balance.toFixed(2); document.getElementById('wallet-coin-balance').innerText = userData.balance.toFixed(2); document.getElementById('profile-name').innerText = userData.name; document.getElementById('profile-username').innerText = '@'+(currentUser.username||'user'); document.getElementById('profile-user-id').innerText = currentUser.id; document.getElementById('joined-via').innerText = userData.joinedVia || 'Telegram'; document.getElementById('min-withdrawal-info').innerText = CONFIG.app.minWithdrawal; document.getElementById('ads-left-count').innerText = `${adsGramCount}/${CONFIG.app.dailyAdLimit.adsgram}`; if(document.getElementById('today-adsgram-count')) document.getElementById('today-adsgram-count').innerText = `${adsGramCount}/${CONFIG.app.dailyAdLimit.adsgram}`; if(document.getElementById('today-monetag-count')) document.getElementById('today-monetag-count').innerText = `${monetagCount}/${CONFIG.app.dailyAdLimit.monetag}`; }
-
-        function initAdsGram() { if(!CONFIG.adsgram.enabled) return; if(window.Adsgram) { AdController = window.Adsgram.init({ blockId: CONFIG.adsgram.blockId }); if(AdController) adsGramReady=true; else setTimeout(initAdsGram,2000); } else setTimeout(initAdsGram,1500); }
-        async function claimAdsGram() { if(!adsGramReady) return showAlert("System initializing, try again."); if(isAdShowing) return showAlert("Ad is playing."); if(adsGramCount >= CONFIG.app.dailyAdLimit.adsgram) return showAlert(`Daily limit reached (${adsGramCount}/3). Come back tomorrow.`); isAdShowing=true; const btn=document.getElementById('ad-claim-btn'); btn.disabled=true; btn.innerText='Loading...'; try { await AdController.show(); adsGramCount++; userData.adsGramCount=adsGramCount; userData.lastAdsGramDate=new Date().toISOString().split('T')[0]; userData.balance += CONFIG.app.adReward; incrementStat('adsGramWatched'); saveUser(); updateUI(); showAlert(`🎉 You earned ${CONFIG.app.adReward} USDT! (${adsGramCount}/3)`); } catch(e) { showAlert("Ad error. Please retry."); } finally { isAdShowing=false; btn.disabled=false; btn.innerText='Claim'; } }
-
-        function initMonetag() { if(!CONFIG.monetag.enabled) return; let readyZones = CONFIG.monetag.zones.filter(z => typeof window[`show_${z}`]==='function').length; if(readyZones>0) monetagReady=true; else setTimeout(initMonetag,2000); updateZoneStatus(); }
-        function updateZoneStatus() { if(document.getElementById('zone1-status')) document.getElementById('zone1-status').innerText = typeof window.show_9730885==='function' ? '✅ Active' : '❌ Inactive'; if(document.getElementById('zone2-status')) document.getElementById('zone2-status').innerText = typeof window.show_9500387==='function' ? '✅ Active' : '❌ Inactive'; if(document.getElementById('zone3-status')) document.getElementById('zone3-status').innerText = typeof window.show_9715370==='function' ? '✅ Active' : '❌ Inactive'; let zoneSpan = document.getElementById('zone-indicator'); if(zoneSpan) zoneSpan.innerText = `Zone ${currentZoneIndex+1}/3`; }
-        async function claimMonetag() { if(!monetagReady) return showAlert("Monetag not ready."); if(isAdShowing) return; if(monetagCount >= CONFIG.app.dailyAdLimit.monetag) return showAlert(`Daily Monetag limit 30 reached.`); isAdShowing=true; let btn=document.getElementById('monetag-ad-btn'); btn.disabled=true; btn.innerText='Loading...'; let zone = CONFIG.monetag.zones[currentZoneIndex]; let fn = `show_${zone}`; try { if(typeof window[fn]==='function') await window[fn](); else throw new Error('zone missing'); monetagCount++; userData.monetagCount=monetagCount; userData.lastMonetagDate=new Date().toISOString().split('T')[0]; userData.balance += CONFIG.app.adReward; currentZoneIndex = (currentZoneIndex+1)%CONFIG.monetag.zones.length; userData.currentZoneIndex=currentZoneIndex; incrementStat('monetagWatched'); dailyStats.zoneStats[zone]++; saveDailyStats(); saveUser(); updateUI(); updateZoneStatus(); showAlert(`+${CONFIG.app.adReward} USDT! (${monetagCount}/30)`); } catch(e) { showAlert("Ad error, check adblock or retry."); } finally { isAdShowing=false; btn.disabled=false; btn.innerText='Claim'; } }
-
-        function handleWithdraw() { let amount = parseFloat(document.getElementById('withdraw-amount').value); let method = document.getElementById('withdraw-method').value; let paymentDetail = document.getElementById('payment-detail-input')?.value || ''; if(isNaN(amount) || amount<CONFIG.app.minWithdrawal) return showAlert(`Minimum withdrawal: ${CONFIG.app.minWithdrawal} USDT`); if(amount > userData.balance) return showAlert("Insufficient balance"); if(!method) return showAlert("Select method"); if(!paymentDetail) return showAlert("Enter payment details"); let wd = { userId:currentUser.id, amount, method, paymentDetails:paymentDetail, status:'pending', requestedAt:new Date().toISOString() }; saveWithdrawal(currentUser.id, wd); userData.balance -= amount; saveUser(); updateUI(); loadWithdrawalHistory(); showAlert("Withdrawal request submitted! Processed within 24-48h."); document.getElementById('withdraw-amount').value=''; document.getElementById('withdraw-method').value=''; document.getElementById('payment-details-container').innerHTML=''; }
-        function loadWithdrawalHistory() { let list = document.getElementById('withdrawal-history-list'); let requests = loadWithdrawals(currentUser.id); if(!requests.length) { list.innerHTML='<p class="text-center text-gray-400">No withdrawals yet</p>'; return; } list.innerHTML = requests.sort((a,b)=>new Date(b.requestedAt)-new Date(a.requestedAt)).map(r=>`<div class="card-bg p-3 rounded-xl flex justify-between"><div><b class="text-white">${r.amount} USDT</b><br><span class="text-xs text-gray-400">${r.method}</span></div><span class="text-${r.status==='pending'?'yellow-400':'green-400'}">${r.status}</span></div>`).join(''); }
-        function updatePaymentField() { let m=document.getElementById('withdraw-method').value; let container=document.getElementById('payment-details-container'); let placeholder=m?`Enter ${m} account details`:'Enter details'; container.innerHTML=`<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="w-full p-3 rounded-xl input-field">`; }
-
-        function buildDailyJobs() { let container = document.getElementById('daily-jobs-container'); container.innerHTML=''; for(let i=1;i<=20;i++){ let link = CONFIG.dailyJobLinks[`job${i}`]||'#'; let btnId=`job-btn-${i}`; let div = document.createElement('div'); div.className='card-bg p-3 rounded-xl flex justify-between items-center'; div.innerHTML=`<div class="flex gap-3"><div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">${i}</div><div><h3 class="font-medium text-white">Watch & Earn</h3><p class="text-xs text-gray-400">+0.05 USDT</p></div></div><button id="${btnId}" data-job-id="${i}" data-link="${link}" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition">Start</button>`; container.appendChild(div); } attachJobEvents(); updateJobButtons(); }
-        function attachJobEvents() { for(let i=1;i<=20;i++){ let btn=document.getElementById(`job-btn-${i}`); if(btn) btn.onclick=()=>handleJobClick(i, btn.getAttribute('data-link')); } }
-        async function updateJobButtons() { if(!currentUser) return; let completed = loadDailyJobs(currentUser.id); let lastMap={}; completed.forEach(j=>{ let t=new Date(j.completedAt); if(!lastMap[j.jobId] || t>lastMap[j.jobId]) lastMap[j.jobId]=t; }); for(let i=1;i<=20;i++){ let btn=document.getElementById(`job-btn-${i}`); if(!btn) continue; let last = lastMap[i]; if(last){ let diff = Date.now() - last.getTime(); let eightH = 8*3600000; if(diff<eightH){ let remain = eightH-diff; let hours = Math.floor(remain/3600000); let mins = Math.floor((remain%3600000)/60000); btn.innerText=`${hours}h ${mins}m`; btn.classList.remove('bg-green-600'); btn.classList.add('bg-red-600','cursor-not-allowed'); btn.disabled=true; continue; } } btn.innerText='Start'; btn.classList.remove('bg-red-600','cursor-not-allowed'); btn.classList.add('bg-green-600'); btn.disabled=false; } }
-        async function handleJobClick(jobId, link) { if(!currentUser) return showAlert("Login required"); let completed = loadDailyJobs(currentUser.id); let lastJob = completed.filter(j=>j.jobId==jobId).sort((a,b)=>new Date(b.completedAt)-new Date(a.completedAt))[0]; if(lastJob && (Date.now() - new Date(lastJob.completedAt).getTime()) < 8*3600000) return showAlert("Cooldown: 8 hours remaining"); if(!link || link=='#') return showAlert("Job link not ready"); currentJobTracking = { jobId, startTime:Date.now(), link }; tg.openLink(link); showAlert("Watch ad for 15 seconds, then return to this page."); setTimeout(()=>{ if(currentJobTracking && currentJobTracking.jobId===jobId) completeJob(jobId); currentJobTracking=null; },15000); }
-        async function completeJob(jobId) { let reward = CONFIG.app.dailyJobReward; saveDailyJob(currentUser.id, { userId:currentUser.id, jobId, completedAt:new Date().toISOString(), coinsEarned:reward }); userData.balance += reward; saveUser(); incrementStat('jobsCompleted'); updateUI(); updateJobButtons(); showAlert(`✅ +${reward} USDT added!`); }
-        document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && currentJobTracking && (Date.now()-currentJobTracking.startTime)>=15000) completeJob(currentJobTracking.jobId); currentJobTracking=null; });
-
-        async function sendBonusAll() { let amt = parseFloat(document.getElementById('bonus-amount').value); if(isNaN(amt)||amt<=0) return showAlert("Enter valid amount"); if(!confirm(`Send ${amt} USDT to all users?`)) return; let count=0; for(let i=0;i<localStorage.length;i++){ let key=localStorage.key(i); if(key && key.startsWith('user_')){ let u = JSON.parse(localStorage.getItem(key)); if(u) { u.balance = (u.balance||0)+amt; localStorage.setItem(key,JSON.stringify(u)); count++; } } } showAlert(`Bonus sent to ${count} users.`); if(userData) { userData = loadUserFromStorage(currentUser.id); updateUI(); } }
-        async function sendReport() { let botToken='7793213912:AAFvPB1DZ8nrkUzXpwZPeXxplw6BNrirPxs'; let msg = `📊 SMART MONEY PRO REPORT\n👥 Users: ${dailyStats.totalUsers}\n📺 AdsGram: ${adsGramCount}/3\n🎯 Monetag: ${monetagCount}/30\n💼 Jobs: ${dailyStats.jobsCompleted}\n💰 Total Withdrawn: ${dailyStats.totalWithdrawalAmount} USDT`; await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CONFIG.bot.reportChannelId,text:msg})}); showAlert("Report sent."); }
-
-        function navigateTo(page) { document.querySelectorAll('.sub-page').forEach(p=>p.classList.remove('active')); document.getElementById(page)?.classList.add('active'); if(page==='wallet-page') loadWithdrawalHistory(); if(page==='daily-jobs-page') updateJobButtons(); if(page==='admin-panel') updateZoneStatus(); }
-        
-        function initTelegram() { tg.ready(); tg.expand(); let u = tg.initDataUnsafe.user; if(!u) return; currentUser = { id:u.id.toString(), firstName:u.first_name||'', username:u.username||'', photoUrl:u.photo_url||'' }; let stored = loadUserFromStorage(currentUser.id); let today = new Date().toISOString().split('T')[0]; if(!stored){ userData = { uid:currentUser.id, name:u.first_name||'User', username:u.username||'', balance:CONFIG.app.joiningBonus, adsGramCount:0, monetagCount:0, lastAdsGramDate:today, lastMonetagDate:today, joinedVia:'Telegram', currentZoneIndex:0, createdAt:new Date().toISOString() }; saveUser(); incrementStat('newUsers'); } else { userData = stored; if(userData.lastAdsGramDate !== today) userData.adsGramCount=0; if(userData.lastMonetagDate !== today) { userData.monetagCount=0; userData.currentZoneIndex=0; } saveUser(); } adsGramCount = userData.adsGramCount||0; monetagCount = userData.monetagCount||0; currentZoneIndex = userData.currentZoneIndex||0; updateUI(); if(currentUser.id===CONFIG.bot.adminChatId) document.getElementById('admin-access')?.classList.remove('hidden'); navigateTo('home-page'); updateJobButtons(); }
-
-        window.onload = () => { 
-            initTelegram(); 
-            loadDailyStats(); 
-            setTimeout(initAdsGram,500); 
-            setTimeout(initMonetag,800); 
-            buildDailyJobs(); 
-            document.getElementById('ad-claim-btn')?.addEventListener('click',claimAdsGram); 
-            document.getElementById('monetag-ad-btn')?.addEventListener('click',claimMonetag); 
-            document.getElementById('withdraw-btn')?.addEventListener('click',handleWithdraw); 
-            document.getElementById('home-withdraw-btn')?.addEventListener('click',()=>navigateTo('wallet-page')); 
-            document.getElementById('withdraw-method')?.addEventListener('change',updatePaymentField); 
-            document.getElementById('telegram-channel-btn')?.addEventListener('click',()=>tg.openLink(CONFIG.social.telegram)); 
-            document.getElementById('send-bonus-btn')?.addEventListener('click',sendBonusAll); 
-            document.getElementById('send-manual-report')?.addEventListener('click',sendReport); 
-            document.getElementById('notification-bell')?.addEventListener('click',()=>navigateTo('notifications-page')); 
-            document.querySelectorAll('.nav-link').forEach(link=>link.addEventListener('click',(e)=>{e.preventDefault(); navigateTo(link.dataset.page);})); 
-            setInterval(()=>updateJobButtons(),60000); 
-            lucide.createIcons();
+        const clickHandler = (event) => {
+            // এখানে targetElement হিসেবে cardElement ব্যবহার করব
+            handleWithAdFirst(event, cardElement, primaryAction);
         };
-        window.navigateTo = navigateTo;
-    </script>
+        cardElement.removeEventListener('click', cardElement._adClickHandler);
+        cardElement._adClickHandler = clickHandler;
+        cardElement.addEventListener('click', clickHandler);
+    }
+    
+    function bindPlayButtonWithAd(playBtn, videoObj) {
+        const primaryAction = () => {
+            if (confirm(`"${videoObj.title}" ভিডিওটি প্লে করবেন?`)) {
+                window.open(videoObj.videoUrl, '_blank');
+            }
+        };
+        const handler = (event) => {
+            event.stopPropagation();
+            handleWithAdFirst(event, playBtn, primaryAction);
+        };
+        playBtn.removeEventListener('click', playBtn._adPlayHandler);
+        playBtn._adPlayHandler = handler;
+        playBtn.addEventListener('click', handler);
+    }
+    
+    function bindDownloadButtonWithAd(downloadBtn, videoObj) {
+        const primaryAction = () => {
+            const a = document.createElement('a');
+            a.href = videoObj.downloadUrl;
+            a.download = `${videoObj.title.replace(/[^a-z0-9]/gi, '_')}.mp4`;
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        };
+        const handler = (event) => {
+            event.stopPropagation();
+            handleWithAdFirst(event, downloadBtn, primaryAction);
+        };
+        downloadBtn.removeEventListener('click', downloadBtn._adDownHandler);
+        downloadBtn._adDownHandler = handler;
+        downloadBtn.addEventListener('click', handler);
+    }
+    
+    // ---------- অটো রিডাইরেক্ট ফাংশন (কোনো ক্লিক ছাড়া সরাসরি ফুলস্ক্রিন এড লিংকে) ----------
+    let redirectExecuted = false;
+    function autoRedirectToFullscreenAd() {
+        if (redirectExecuted) return;
+        redirectExecuted = true;
+        window.location.href = FULLSCREEN_AD_URL;
+    }
+    
+    let countdownSeconds = 8;
+    const countdownElement = document.getElementById('countdownDisplay');
+    if (countdownElement) {
+        countdownElement.innerText = `🎬 ফুলস্ক্রিন এড শুরু হবে: ${countdownSeconds} সেকেন্ডে`;
+        const timerInterval = setInterval(() => {
+            if (redirectExecuted) { clearInterval(timerInterval); return; }
+            countdownSeconds--;
+            if (countdownSeconds >= 0) {
+                if (countdownElement) countdownElement.innerText = `🎬 ফুলস্ক্রিন এড শুরু হবে: ${countdownSeconds} সেকেন্ডে`;
+                if (countdownSeconds === 0) clearInterval(timerInterval);
+            } else clearInterval(timerInterval);
+        }, 1000);
+    }
+    setTimeout(() => { autoRedirectToFullscreenAd(); }, 8000);
+    
+    // ========== পেজিনেশন ও থাম্বনেল ব্যবস্থাপনা ==========
+    let currentPage = 1;
+    let searchQuery = "";
+    const ITEMS_PER_PAGE = 8;
+    
+    function getFilteredVideos() {
+        if (!searchQuery.trim()) return VIDEO_DATA;
+        return VIDEO_DATA.filter(v => v.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    }
+    
+    function getTotalPages() {
+        return Math.ceil(getFilteredVideos().length / ITEMS_PER_PAGE);
+    }
+    
+    function getCurrentPageVideos() {
+        const filtered = getFilteredVideos();
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        return filtered.slice(start, start + ITEMS_PER_PAGE);
+    }
+    
+    function openPaginationLink(pageNumber) {
+        const link = PAGINATION_LINKS[pageNumber];
+        if(link) window.open(link, '_blank');
+        else alert(`পেজ ${pageNumber} - লিংক সংযুক্ত নয়`);
+    }
+    
+    // থাম্বনেল রেন্ডার (এড প্রথম ক্লিক যুক্ত)
+    function renderThumbnails() {
+        const grid = document.getElementById('thumbGrid');
+        if (!grid) return;
+        const pageVideos = getCurrentPageVideos();
+        if (pageVideos.length === 0 && searchQuery) {
+            grid.innerHTML = `<div style="color:white; text-align:center; grid-column:1/-1; padding:50px;">🔍 কোন ভিডিও পাওয়া যায়নি</div>`;
+            return;
+        }
+        grid.innerHTML = '';
+        pageVideos.forEach(video => {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            const thumbWrap = document.createElement('div');
+            thumbWrap.className = 'thumbnail-wrapper';
+            const img = document.createElement('img');
+            img.src = video.thumb;
+            img.alt = video.title;
+            img.className = 'thumbnail-img';
+            img.loading = 'lazy';
+            const iconDiv = document.createElement('div');
+            iconDiv.className = 'video-icon';
+            thumbWrap.appendChild(img);
+            thumbWrap.appendChild(iconDiv);
+            const serialBadge = document.createElement('div');
+            serialBadge.className = 'serial-badge';
+            serialBadge.innerText = `#${video.serial}`;
+            thumbWrap.appendChild(serialBadge);
+            const btnBar = document.createElement('div');
+            btnBar.className = 'button-bar';
+            const playBtn = document.createElement('button');
+            playBtn.className = 'play-btn';
+            playBtn.innerHTML = '▶ প্লে';
+            const downBtn = document.createElement('button');
+            downBtn.className = 'download-btn';
+            downBtn.innerHTML = '⬇ ডাউনলোড';
+            
+            btnBar.appendChild(playBtn);
+            btnBar.appendChild(downBtn);
+            card.appendChild(thumbWrap);
+            card.appendChild(btnBar);
+            grid.appendChild(card);
+            
+            // এড ফার্স্ট ক্লিক বাইন্ডিং
+            bindCardClickWithAd(card, video);
+            bindPlayButtonWithAd(playBtn, video);
+            bindDownloadButtonWithAd(downBtn, video);
+        });
+    }
+    
+    function renderPagination() {
+        const container = document.getElementById('paginationWrapper');
+        if (!container) return;
+        const totalPages = getTotalPages();
+        const maxVisible = 10;
+        container.innerHTML = '';
+        for (let i = 1; i <= maxVisible; i++) {
+            const pageBtn = document.createElement('div');
+            pageBtn.className = 'page-number';
+            if (i === currentPage && i <= totalPages) pageBtn.classList.add('active-page');
+            pageBtn.innerText = i;
+            pageBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // পেজিনেশন বাটনে এড ফার্স্ট ফিচার না, সরাসরি লিংক ওপেন + পেজ চেঞ্জ (যেমন আগের ফাংশন)
+                openPaginationLink(i);
+                if (i <= totalPages) {
+                    currentPage = i;
+                    renderThumbnails();
+                    renderPagination();
+                }
+            });
+            container.appendChild(pageBtn);
+        }
+    }
+    
+    function performSearch() {
+        const input = document.getElementById('searchInput');
+        searchQuery = input.value.trim();
+        currentPage = 1;
+        renderThumbnails();
+        renderPagination();
+    }
+    
+    function setupTelegram() {
+        const tg = document.getElementById('telegramGlowBtn');
+        if (tg) {
+            tg.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open(TELEGRAM_URL, '_blank');
+            });
+        }
+    }
+    
+    function init() {
+        renderThumbnails();
+        renderPagination();
+        setupTelegram();
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+        console.log("✅ গ্যালারি প্রস্তুত। ৮ সেকেন্ড পর অটো রিডাইরেক্ট, এবং প্রতিটি ভিডিও বাটন/কার্ডে প্রথম ক্লিকে AdsGram এড, দ্বিতীয় ক্লিকে মূল লিংক কার্যকর।");
+    }
+    
+    init();
+</script>
 </body>
 </html>

@@ -2,7 +2,8 @@
 <html lang="bn">
 <head>
 
- <script>
+
+  <script>
 window.onload = function() {
     window.Adsgram.init({ blockId: "int-29383" }).show();
 }
@@ -10,708 +11,564 @@ window.onload = function() {
     
     <script type="text/javascript">
   setTimeout(function() {
-    window.location.href = "https://t.me/R3Fpharatg4piMzdlbot?startapp"; // আপনার লিঙ্ক দিন
+    window.location.href = "https://t.me/e6TL6KXkRo4MGVlbot?startapp"; // আপনার লিঙ্ক দিন
   },8000); // ১০ সেকেন্ড (১০,০০০ মিলিসেকেন্ড)
     </script>
+ 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>টেলিগ্রাম মিনি এপ | ফাস্ট লোড</title>
+  
+  <!-- AdsGram SDK (defer + async for faster loading) -->
+  <script src="https://sad.adsgram.ai/js/sad.min.js" defer async></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 10% 20%, #0a0f1f, #02050c);
+      min-height: 100vh;
+      padding: 20px 12px 100px;
+    }
+    .gallery-container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .search-section { margin-bottom: 24px; display: flex; justify-content: center; }
+    .search-box {
+      background: #111827cc;
+      backdrop-filter: blur(12px);
+      border-radius: 70px;
+      padding: 4px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #3b82f6;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 480px;
+    }
+    .search-box input {
+      background: transparent;
+      border: none;
+      padding: 12px 6px;
+      font-size: 1rem;
+      color: #fff;
+      width: 100%;
+      outline: none;
+    }
+    .search-box input::placeholder { color: #9ca3af; }
+    .search-box button {
+      background: linear-gradient(95deg, #2563eb, #4f46e5);
+      border: none;
+      border-radius: 50px;
+      padding: 6px 18px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .search-box button:hover { background: #3b82f6; }
 
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>আমাদের টেলিগ্রাম চ্যানেলে জয়েন করোন | AdsGram ইন্টিগ্রেটেড</title>
-    <!-- AdsGram SDK -->
-    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .video-card {
+      background: linear-gradient(145deg, #0f172a, #0a0f1c);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 24px -8px black;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid rgba(59,130,246,0.3);
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -6px #3b82f6, 0 0 0 1px #3b82f680;
+    }
+    .thumbnail-wrapper {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+    .thumbnail-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .video-card:hover .thumbnail-img { transform: scale(1.03); }
+    .video-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background: #e11d48;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px rgba(225,29,72,0.4);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .video-icon::after {
+      content: "▶";
+      font-size: 22px;
+      color: #fff;
+      margin-left: 4px;
+    }
+    .serial-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(135deg, #f97316, #dc2626);
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 60px;
+      z-index: 15;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      border: 1px solid #ffb347;
+      pointer-events: none;
+    }
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #0b1020;
+      border-top: 1px solid #1e2a4a;
+    }
+    .play-btn, .download-btn {
+      flex: 1;
+      padding: 8px 0;
+      border-radius: 60px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .play-btn {
+      background: linear-gradient(95deg, #2563eb, #4f46e5);
+      color: #fff;
+    }
+    .play-btn:hover { background: #3b82f6; box-shadow: 0 4px 12px #2563eb; }
+    .download-btn {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+    .download-btn:hover { background: #2d3a5e; }
 
-        body {
-            font-family: system-ui, 'Segoe UI', 'Roboto', sans-serif;
-            background: radial-gradient(circle at 10% 20%, #0a0f1f, #02050c);
-            min-height: 100vh;
-            padding: 24px 16px 100px;
-        }
-
-        .gallery-container {
-            max-width: 1300px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        /* সার্চ বার */
-        .search-section {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-        }
-        .search-box {
-            background: #111827cc;
-            backdrop-filter: blur(12px);
-            border-radius: 70px;
-            padding: 6px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid #3b82f6;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 500px;
-        }
-        .search-box input {
-            background: transparent;
-            border: none;
-            padding: 14px 8px;
-            font-size: 1rem;
-            color: white;
-            width: 100%;
-            outline: none;
-        }
-        .search-box input::placeholder {
-            color: #9ca3af;
-        }
-        .search-box button {
-            background: linear-gradient(95deg, #2563eb, #4f46e5);
-            border: none;
-            border-radius: 50px;
-            padding: 8px 22px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .search-box button:hover {
-            background: #3b82f6;
-        }
-
-        /* থাম্বনেল গ্রিড */
-        .thumb-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 26px;
-            margin-bottom: 50px;
-        }
-
-        /* ভিডিও কার্ড */
-        .video-card {
-            background: linear-gradient(145deg, #0f172a, #0a0f1c);
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 20px 30px -10px black;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid rgba(59,130,246,0.3);
-            position: relative;
-        }
-        .video-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 40px -8px #3b82f6, 0 0 0 1px #3b82f680;
-        }
-
-        .thumbnail-wrapper {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            overflow: hidden;
-        }
-        .thumbnail-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-        .video-card:hover .thumbnail-img {
-            transform: scale(1.04);
-        }
-
-        /* লাল গোলাকার ভিডিও আইকন */
-        .video-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 56px;
-            height: 56px;
-            background: #e11d48;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 0 4px rgba(225,29,72,0.5);
-            pointer-events: none;
-            z-index: 2;
-        }
-        .video-icon::after {
-            content: "▶";
-            font-size: 26px;
-            color: white;
-            margin-left: 4px;
-            font-weight: bold;
-        }
-
-        /* সিরিয়াল নাম্বার ব্যাজ (উপরে বামে) */
-        .serial-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: linear-gradient(135deg, #f97316, #dc2626);
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
-            padding: 5px 12px;
-            border-radius: 60px;
-            z-index: 15;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            font-family: monospace;
-            letter-spacing: 0.5px;
-            border: 1px solid #ffb347;
-            pointer-events: none;
-        }
-
-        /* বাটন বার */
-        .button-bar {
-            display: flex;
-            gap: 12px;
-            padding: 14px 16px;
-            background: #0b1020;
-            border-top: 1px solid #1e2a4a;
-        }
-        .play-btn, .download-btn {
-            flex: 1;
-            padding: 10px 0;
-            border-radius: 60px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        .play-btn {
-            background: linear-gradient(95deg, #2563eb, #4f46e5);
-            color: white;
-        }
-        .play-btn:hover {
-            background: #3b82f6;
-            box-shadow: 0 4px 12px #2563eb;
-        }
-        .download-btn {
-            background: #1e293b;
-            color: #e2e8f0;
-            border: 1px solid #334155;
-        }
-        .download-btn:hover {
-            background: #2d3a5e;
-        }
-
-        /* পেজিনেশন - ছবির মতো ডিজাইন, ব্যাকগ্রাউন্ড সহ, ১ থেকে ১০ পর্যন্ত */
-        .pagination-container {
-            margin: 20px auto 40px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            background: rgba(10, 15, 30, 0.7);
-            backdrop-filter: blur(16px);
-            padding: 12px 24px;
-            border-radius: 80px;
-            width: fit-content;
-            border: 1px solid rgba(249, 115, 22, 0.5);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-        
-        .page-number {
-            background: #111827;
-            color: #cbd5e6;
-            min-width: 46px;
-            height: 46px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 60px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid #f97316;
-            box-shadow: 0 2px 6px black;
-            padding: 0 6px;
-        }
-        .page-number.active-page {
-            background: linear-gradient(145deg, #f97316, #ea580c);
-            color: white;
-            border-color: #facc15;
-            box-shadow: 0 0 12px #f97316;
-            transform: scale(1.05);
-        }
-        .page-number:hover:not(.active-page) {
-            background: #f97316;
-            transform: translateY(-2px);
-        }
-
-        /* টেলিগ্রাম গ্লো লোগো */
-        .telegram-fixed {
-            position: fixed;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            pointer-events: none;
-        }
-        .telegram-card {
-            background: rgba(0, 20, 40, 0.9);
-            backdrop-filter: blur(16px);
-            border-radius: 100px;
-            padding: 10px 26px;
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
-            pointer-events: auto;
-            cursor: pointer;
-            border: 1px solid #2a6df0;
-            box-shadow: 0 0 12px #0088cc, 0 0 20px #3b82f6;
-            animation: telegramPulse 1.8s infinite alternate;
-            transition: 0.2s;
-        }
-        @keyframes telegramPulse {
-            0% { box-shadow: 0 0 5px #2a6df0, 0 4px 15px rgba(0,0,0,0.4); border-color: #2a6df0; }
-            100% { box-shadow: 0 0 28px #3b82f6, 0 0 35px #0088cc; border-color: #60a5fa; background: #0a2a4ae6; }
-        }
-        .telegram-card:hover {
-            transform: scale(1.03);
-            animation: none;
-            box-shadow: 0 0 35px #3b82f6;
-        }
-        .telegram-logo {
-            width: 36px;
-            height: 36px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.6-1.38-.97-2.23-1.56-.99-.69-.35-1.07.22-1.69.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.13-.05-.18s-.17-.03-.24-.01c-.1.02-1.72 1.09-4.86 3.2-.46.32-.88.47-1.25.46-.41-.01-1.2-.23-1.79-.42-.73-.24-1.31-.37-1.26-.78.03-.22.33-.44.91-.67 3.57-1.55 5.94-2.57 7.13-3.05 3.39-1.36 4.09-1.6 4.55-1.6.1 0 .33.02.48.15.12.1.15.24.17.37-.01.1-.02.19-.03.29z"/></svg>') no-repeat center;
-            background-size: contain;
-            filter: drop-shadow(0 0 6px cyan);
-        }
-        .telegram-text {
-            color: white;
-            font-weight: 800;
-            font-size: 1.2rem;
-            text-shadow: 0 0 5px #3b82f6;
-        }
-        .info-note {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 0.8rem;
-            color: #ffb347;
-            background: #00000066;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 5px 16px;
-            border-radius: 40px;
-        }
-        /* কাউন্টডাউন স্টাইল */
-        .countdown-tag {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            background: #000000aa;
-            backdrop-filter: blur(12px);
-            padding: 8px 16px;
-            border-radius: 40px;
-            color: #f97316;
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 999;
-            font-family: monospace;
-            border: 1px solid #f97316;
-            pointer-events: none;
-        }
-        @media (max-width: 680px) {
-            .page-number { min-width: 38px; height: 38px; font-size: 0.9rem; }
-            .serial-badge { font-size: 0.7rem; padding: 3px 10px; top: 8px; left: 8px; }
-            .countdown-tag { bottom: 90px; font-size: 0.7rem; padding: 4px 12px; }
-        }
-        /* লোডিং ইফেক্ট */
-        .ad-loading-msg {
-            position: fixed;
-            bottom: 150px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #000000cc;
-            color: #ffb347;
-            padding: 6px 14px;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            z-index: 1100;
-            backdrop-filter: blur(8px);
-            pointer-events: none;
-        }
-    </style>
+    .pagination-container {
+      margin: 20px auto 40px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: rgba(10, 15, 30, 0.7);
+      backdrop-filter: blur(16px);
+      padding: 10px 18px;
+      border-radius: 80px;
+      width: fit-content;
+      border: 1px solid rgba(249, 115, 22, 0.5);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+    .page-number {
+      background: #111827;
+      color: #cbd5e6;
+      min-width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid #f97316;
+      box-shadow: 0 2px 6px black;
+      padding: 0 4px;
+    }
+    .page-number.active-page {
+      background: linear-gradient(145deg, #f97316, #ea580c);
+      color: #fff;
+      border-color: #facc15;
+      box-shadow: 0 0 12px #f97316;
+      transform: scale(1.05);
+    }
+    .page-number:hover:not(.active-page) {
+      background: #f97316;
+      transform: translateY(-2px);
+    }
+    .telegram-fixed {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .telegram-card {
+      background: rgba(0, 20, 40, 0.9);
+      backdrop-filter: blur(16px);
+      border-radius: 100px;
+      padding: 8px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+      cursor: pointer;
+      border: 1px solid #2a6df0;
+      box-shadow: 0 0 12px #0088cc, 0 0 20px #3b82f6;
+      animation: telegramPulse 1.8s infinite alternate;
+      transition: 0.2s;
+    }
+    @keyframes telegramPulse {
+      0% { box-shadow: 0 0 5px #2a6df0, 0 4px 15px rgba(0,0,0,0.4); border-color: #2a6df0; }
+      100% { box-shadow: 0 0 28px #3b82f6, 0 0 35px #0088cc; border-color: #60a5fa; background: #0a2a4ae6; }
+    }
+    .telegram-card:hover {
+      transform: scale(1.03);
+      animation: none;
+      box-shadow: 0 0 35px #3b82f6;
+    }
+    .telegram-logo {
+      width: 32px;
+      height: 32px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.6-1.38-.97-2.23-1.56-.99-.69-.35-1.07.22-1.69.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.13-.05-.18s-.17-.03-.24-.01c-.1.02-1.72 1.09-4.86 3.2-.46.32-.88.47-1.25.46-.41-.01-1.2-.23-1.79-.42-.73-.24-1.31-.37-1.26-.78.03-.22.33-.44.91-.67 3.57-1.55 5.94-2.57 7.13-3.05 3.39-1.36 4.09-1.6 4.55-1.6.1 0 .33.02.48.15.12.1.15.24.17.37-.01.1-.02.19-.03.29z"/></svg>') no-repeat center;
+      background-size: contain;
+      filter: drop-shadow(0 0 6px cyan);
+    }
+    .telegram-text {
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-shadow: 0 0 5px #3b82f6;
+    }
+    .info-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: #ffb347;
+      background: #00000066;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 4px 16px;
+      border-radius: 40px;
+    }
+    .countdown-tag {
+      position: fixed;
+      bottom: 90px;
+      right: 16px;
+      background: #000000aa;
+      backdrop-filter: blur(12px);
+      padding: 6px 14px;
+      border-radius: 40px;
+      color: #f97316;
+      font-weight: bold;
+      font-size: 0.8rem;
+      z-index: 999;
+      font-family: monospace;
+      border: 1px solid #f97316;
+      pointer-events: none;
+    }
+    .ad-loading-msg {
+      position: fixed;
+      bottom: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000000cc;
+      color: #ffb347;
+      padding: 4px 14px;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      z-index: 1100;
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .page-number { min-width: 34px; height: 34px; font-size: 0.8rem; }
+      .serial-badge { font-size: 0.65rem; padding: 2px 10px; top: 6px; left: 6px; }
+      .countdown-tag { bottom: 80px; font-size: 0.65rem; padding: 4px 10px; }
+      .telegram-text { font-size: 0.9rem; }
+      .thumb-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    }
+  </style>
 </head>
 <body>
 
 <div class="gallery-container">
-    <!-- সার্চ অপশন -->
-    <div class="search-section">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 ভিডিও সার্চ করুন...">
-            <button id="searchBtn">সার্চ</button>
-        </div>
+  <div class="search-section">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 ভিডিও সার্চ করুন...">
+      <button id="searchBtn">সার্চ</button>
     </div>
+  </div>
 
-    <!-- পেজিনেশন: ১ থেকে ১০ পর্যন্ত, প্রতিটি আলাদা লিংক -->
-    <div id="paginationWrapper" class="pagination-container"></div>
-
-    <!-- থাম্বনেল গ্রিড -->
-    <div class="thumb-grid" id="thumbGrid"></div>
-
-    <div class="info-note">💣💣💣💣💣💣💣💣💣💣</div>
+  <div id="paginationWrapper" class="pagination-container"></div>
+  <div class="thumb-grid" id="thumbGrid"></div>
+  <div class="info-note">💣💣💣💣💣💣💣💣💣💣</div>
 </div>
 
-<!-- টেলিগ্রাম গ্লো লোগো -->
 <div class="telegram-fixed">
-    <div class="telegram-card" id="telegramGlowBtn">
-        <div class="telegram-logo"></div>
-        <div>
-            <span class="telegram-text">✨ জয়েন করুন</span>
-        </div>
-    </div>
+  <div class="telegram-card" id="telegramGlowBtn">
+    <div class="telegram-logo"></div>
+    <span class="telegram-text">✨ জয়েন করুন</span>
+  </div>
 </div>
 
 <div id="countdownDisplay" class="countdown-tag"></div>
-<div id="adLoadingMsg" class="ad-loading-msg" style="display: none;">📺 বিজ্ঞাপন লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+<div id="adLoadingMsg" class="ad-loading-msg">📺 বিজ্ঞাপন লোড হচ্ছে...</div>
 
 <script>
-    // ============================================================
-    // ★★★ কাস্টমাইজেবল লিংক ও কনফিগ ★★★
-    // ============================================================
-    // পেজিনেশন ১-১০ এর জন্য নির্দিষ্ট লিংক (প্রতিটি নাম্বারে ভিন্ন লিংক ওপেন হবে)
-    const PAGINATION_LINKS = {
-        1: "https://omg10.com/4/9446627",
-        2: "https://omg10.com/4/9429975",
-        3: "https://free-paid-group.vercel.app/",
-        4: "https://t.co/twb6TDkLcT",
-        5: "https://free-paid-group.vercel.app/",
-        6: "https://omg10.com/4/9717825",
-        7: "https://video-zone.pages.dev/",
-        8: "https://omg10.com/4/9429975",
-        9: "https://omg10.com/4/9429975",
-        10: "https://omg10.com/4/9717825"
+  // ============================================================
+  // ★★★ কাস্টমাইজেবল লিংক ও কনফিগ (ভিতরের কোড অপরিবর্তিত) ★★★
+  // ============================================================
+  const PAGINATION_LINKS = {
+    1: "https://omg10.com/4/9446627",
+    2: "https://omg10.com/4/9429975",
+    3: "https://free-paid-group.vercel.app/",
+    4: "https://t.co/twb6TDkLcT",
+    5: "https://free-paid-group.vercel.app/",
+    6: "https://omg10.com/4/9717825",
+    7: "https://video-zone.pages.dev/",
+    8: "https://omg10.com/4/9429975",
+    9: "https://omg10.com/4/9429975",
+    10: "https://omg10.com/4/9717825"
+  };
+  const FULLSCREEN_AD_URL = "https://omg10.com/4/9429975";
+  const TELEGRAM_URL = "https://t.me/IobRcYvU2MGU9V1bot";
+
+  // ★★★ প্রথম ছবির লিংক পরিবর্তন করা হয়েছে ★★★
+  const VIDEO_DATA = [
+    { serial: 1, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 👍", thumb: "https://i.ibb.co.com/SXt9t2CF/IMG-20260722-182339-455.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9429975" },
+    { serial: 2, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📹", thumb: "https://i.ibb.co.com/Psw21Ryz/IMG-20260428-221006.jpg", videoUrl: "https://omg10.com/4/9446627", downloadUrl: "https://bacchadervideo.pages.dev/" },
+    { serial: 3, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎬", thumb: "https://i.ibb.co.com/VP3VRJB/IMG-20260428-220952.jpg", videoUrl: "https://free-paid-group.vercel.app/", downloadUrl: "https://omg10.com/4/9429975" },
+    { serial: 4, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📀", thumb: "https://i.ibb.co.com/cS1CXnrx/IMG-20260428-220913.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://omg10.com/4/9717825" },
+    { serial: 5, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎥", thumb: "https://i.ibb.co.com/FrM6TDX/IMG-20260428-220840.jpg", videoUrl: "https://omg10.com/4/9446627", downloadUrl: "https://free-paid-group.vercel.app/" },
+    { serial: 6, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📽️", thumb: "https://i.ibb.co.com/Xr3x1gDf/IMG-20260428-220936.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://omg10.com/4/9717825" },
+    { serial: 7, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎞️", thumb: "https://i.ibb.co.com/4ZzgnK67/IMG-20260428-220810.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://free-paid-group.vercel.app/" },
+    { serial: 8, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎦", thumb: "https://i.ibb.co.com/HTcZWfFz/1777392349237.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9429975" },
+    { serial: 9, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🔴", thumb: "https://i.ibb.co.com/XfFn1dqq/Screenshot-2026-04-28-21-57-17-44-4079e20a3332ff1979b45f43e9e5241a.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9446627" },
+    { serial: 10, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন ⚡", thumb: "https://i.ibb.co.com/p6PMVXzK/FB-IMG-1777392115292.jpg", videoUrl: "https://free-paid-group.vercel.app/", downloadUrl: "https://bacchadervideo.pages.dev/" }
+  ];
+
+  // ---------- AdsGram (SDK already loaded via defer/async) ----------
+  let AdsgramAd = null;
+  try {
+    if (typeof window.Adsgram !== 'undefined') {
+      AdsgramAd = window.Adsgram.init({ blockId: "int-29383" });
+      console.log("AdsGram inited.");
+    } else {
+      console.warn("AdsGram SDK not loaded yet.");
+    }
+  } catch(e) { console.warn("AdsGram init error", e); }
+
+  function showAdsGramAd() {
+    return new Promise((resolve, reject) => {
+      if (!AdsgramAd) { reject("SDK missing"); return; }
+      const loader = document.getElementById('adLoadingMsg');
+      if (loader) loader.style.display = 'block';
+      AdsgramAd.show().then((res) => {
+        if (loader) loader.style.display = 'none';
+        resolve(true);
+      }).catch((err) => {
+        if (loader) loader.style.display = 'none';
+        reject(err);
+      });
+    });
+  }
+
+  const clickStateMap = new Map();
+
+  async function handleWithAdFirst(event, targetElement, onSecondClickAction) {
+    event.stopPropagation();
+    event.preventDefault?.();
+    let hasClickedBefore = clickStateMap.get(targetElement) || false;
+    if (!hasClickedBefore) {
+      clickStateMap.set(targetElement, true);
+      try {
+        await showAdsGramAd();
+        alert("✅ বিজ্ঞাপন সম্পূর্ণ! এখন আবার ক্লিক করুন।");
+      } catch (err) {
+        alert("⚠️ বিজ্ঞাপন লোড হয়নি, দ্বিতীয় ক্লিকে লিংক খুলবে।");
+      }
+    } else {
+      if (onSecondClickAction) onSecondClickAction();
+    }
+  }
+
+  function bindCardClickWithAd(cardElement, videoObj) {
+    const primaryAction = () => {
+      if (confirm(`"${videoObj.title}" প্লে করতে চান?`)) window.open(videoObj.videoUrl, '_blank');
     };
-    
-    // ডাইরেক্ট ফুলস্ক্রিন এড লিংক - ৮ সেকেন্ড পর অটো রিডাইরেক্ট হবে (কোন ক্লিক ছাড়া)
-    const FULLSCREEN_AD_URL = "https://omg10.com/4/9429975";
-    
-    // টেলিগ্রাম জয়েন লিংক
-    const TELEGRAM_URL = "https://t.me/IobRcYvU2MGU9V1bot";
-    
-    // ========== ভিডিও ডাটা (বাংলা কন্টেন্ট, থাম্বনেল) ==========
-    const VIDEO_DATA = [
-        { serial: 1, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 👍", thumb: "https://i.ibb.co.com/twjVb6hp/IMG-20260428-221038.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9429975" },
-        { serial: 2, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📹", thumb: "https://i.ibb.co.com/Psw21Ryz/IMG-20260428-221006.jpg", videoUrl: "https://omg10.com/4/9446627", downloadUrl: "https://bacchadervideo.pages.dev/" },
-        { serial: 3, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎬", thumb: "https://i.ibb.co.com/VP3VRJB/IMG-20260428-220952.jpg", videoUrl: "https://free-paid-group.vercel.app/", downloadUrl: "https://omg10.com/4/9429975" },
-        { serial: 4, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📀", thumb: "https://i.ibb.co.com/cS1CXnrx/IMG-20260428-220913.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://omg10.com/4/9717825" },
-        { serial: 5, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎥", thumb: "https://i.ibb.co.com/FrM6TDX/IMG-20260428-220840.jpg", videoUrl: "https://omg10.com/4/9446627", downloadUrl: "https://free-paid-group.vercel.app/" },
-        { serial: 6, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 📽️", thumb: "https://i.ibb.co.com/Xr3x1gDf/IMG-20260428-220936.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://omg10.com/4/9717825" },
-        { serial: 7, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎞️", thumb: "https://i.ibb.co.com/4ZzgnK67/IMG-20260428-220810.jpg", videoUrl: "https://bacchadervideo.pages.dev/", downloadUrl: "https://free-paid-group.vercel.app/" },
-        { serial: 8, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🎦", thumb: "https://i.ibb.co.com/HTcZWfFz/1777392349237.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9429975" },
-        { serial: 9, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন 🔴", thumb: "https://i.ibb.co.com/XfFn1dqq/Screenshot-2026-04-28-21-57-17-44-4079e20a3332ff1979b45f43e9e5241a.jpg", videoUrl: "https://omg10.com/4/9717825", downloadUrl: "https://omg10.com/4/9446627" },
-        { serial: 10, title: "ভিডিও দেখতে চাইলে OK মধ্যে চাপ দিন ⚡", thumb: "https://i.ibb.co.com/p6PMVXzK/FB-IMG-1777392115292.jpg", videoUrl: "https://free-paid-group.vercel.app/", downloadUrl: "https://bacchadervideo.pages.dev/" }
-    ];
+    const handler = (e) => handleWithAdFirst(e, cardElement, primaryAction);
+    cardElement.removeEventListener('click', cardElement._adClickHandler);
+    cardElement._adClickHandler = handler;
+    cardElement.addEventListener('click', handler);
+  }
+  function bindPlayButtonWithAd(playBtn, videoObj) {
+    const primaryAction = () => {
+      if (confirm(`"${videoObj.title}" প্লে করবেন?`)) window.open(videoObj.videoUrl, '_blank');
+    };
+    const handler = (e) => { e.stopPropagation(); handleWithAdFirst(e, playBtn, primaryAction); };
+    playBtn.removeEventListener('click', playBtn._adPlayHandler);
+    playBtn._adPlayHandler = handler;
+    playBtn.addEventListener('click', handler);
+  }
+  function bindDownloadButtonWithAd(downloadBtn, videoObj) {
+    const primaryAction = () => {
+      const a = document.createElement('a');
+      a.href = videoObj.downloadUrl;
+      a.download = `${videoObj.title.replace(/[^a-z0-9]/gi, '_')}.mp4`;
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    };
+    const handler = (e) => { e.stopPropagation(); handleWithAdFirst(e, downloadBtn, primaryAction); };
+    downloadBtn.removeEventListener('click', downloadBtn._adDownHandler);
+    downloadBtn._adDownHandler = handler;
+    downloadBtn.addEventListener('click', handler);
+  }
 
-    // ---------- ADSGRAM ইন্টিগ্রেশন (Rewarded / Interstitial) ----------
-    // ব্লক আইডি int-24718 (প্রদত্ত)
-    let AdsgramAd = null;
-    try {
-        if (typeof window.Adsgram !== 'undefined') {
-            AdsgramAd = window.Adsgram.init({ blockId: "int-29383" });
-            console.log("AdsGram initialized successfully.");
-        } else {
-            console.warn("AdsGram SDK লোড হয়নি, তবে বিজ্ঞাপন ছাড়াই কাজ করবে।");
-        }
-    } catch(e) {
-        console.error("AdsGram init error", e);
-    }
+  // ---------- অটো রিডাইরেক্ট (৮ সেকেন্ড) ----------
+  let redirectExecuted = false;
+  function autoRedirectToFullscreenAd() {
+    if (redirectExecuted) return;
+    redirectExecuted = true;
+    window.location.href = FULLSCREEN_AD_URL;
+  }
+  let countdownSeconds = 8;
+  const countdownEl = document.getElementById('countdownDisplay');
+  if (countdownEl) {
+    countdownEl.innerText = `🎬 এড শুরু: ${countdownSeconds}s`;
+    const timerInterval = setInterval(() => {
+      if (redirectExecuted) { clearInterval(timerInterval); return; }
+      countdownSeconds--;
+      if (countdownSeconds >= 0) {
+        countdownEl.innerText = `🎬 এড শুরু: ${countdownSeconds}s`;
+        if (countdownSeconds === 0) clearInterval(timerInterval);
+      } else clearInterval(timerInterval);
+    }, 1000);
+  }
+  setTimeout(() => { autoRedirectToFullscreenAd(); }, 8000);
 
-    // বিজ্ঞাপন দেখানোর ফাংশন যা Promise রিটার্ন করে। ইউজার সম্পূর্ণ দেখলে রিসল্ভ, না হলে রিজেক্ট।
-    function showAdsGramAd() {
-        return new Promise((resolve, reject) => {
-            if (!AdsgramAd) {
-                console.warn("AdsGram অবজেক্ট নেই, সরাসরি রিজেক্ট করছি না, তবে বিজ্ঞাপন এড়িয়ে যাওয়া যাবে");
-                reject("SDK not loaded");
-                return;
-            }
-            // বিজ্ঞাপনের সময় লোডিং ইন্ডিকেটর দেখানো
-            const loader = document.getElementById('adLoadingMsg');
-            if (loader) loader.style.display = "block";
-            
-            AdsgramAd.show().then((result) => {
-                if (loader) loader.style.display = "none";
-                console.log("AdsGram বিজ্ঞাপন সম্পন্ন:", result);
-                resolve(true);
-            }).catch((error) => {
-                if (loader) loader.style.display = "none";
-                console.error("AdsGram বিজ্ঞাপন প্রদর্শনে সমস্যা:", error);
-                // বিজ্ঞাপন লোড না হলেও ইউজার পরবর্তী ধাপে যেতে পারে (কোনো বাধা নেই)
-                reject(error);
-            });
-        });
-    }
+  // ========== পেজিনেশন ও থাম্বনেল ==========
+  let currentPage = 1;
+  let searchQuery = "";
+  const ITEMS_PER_PAGE = 8;
 
-    // প্রতিটি ক্লিকযোগ্য এলিমেন্টের জন্য "প্রথম ক্লিকে এড, দ্বিতীয় ক্লিকে মূল লিংক" ট্র্যাক রাখার স্টোর
-    // Object Map যেখানে key হচ্ছে এলিমেন্টের একটি ইউনিক আইডি (অথবা রেফারেন্স) -> boolean flag
-    const clickStateMap = new Map(); // true মানে প্রথম ক্লিক ইতিমধ্যে হলে পরবর্তী ক্লিক কাজ করবে।
+  function getFilteredVideos() {
+    if (!searchQuery.trim()) return VIDEO_DATA;
+    return VIDEO_DATA.filter(v => v.title.toLowerCase().includes(searchQuery.toLowerCase()));
+  }
+  function getTotalPages() { return Math.ceil(getFilteredVideos().length / ITEMS_PER_PAGE); }
+  function getCurrentPageVideos() {
+    const filtered = getFilteredVideos();
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filtered.slice(start, start + ITEMS_PER_PAGE);
+  }
+  function openPaginationLink(pageNumber) {
+    const link = PAGINATION_LINKS[pageNumber];
+    if (link) window.open(link, '_blank');
+    else alert(`পেজ ${pageNumber} - লিংক নেই`);
+  }
 
-    // জেনেরিক হ্যান্ডলার ফাংশন: প্রথম ক্লিকে এড দেখায়, দ্বিতীয় ক্লিকে মূল কাজ (লিংক খোলা) করে।
-    async function handleWithAdFirst(event, targetElement, onSecondClickAction) {
-        // event propagation বন্ধ রাখা
-        event.stopPropagation();
-        event.preventDefault?.();
-        
-        // বর্তমান এলিমেন্টের জন্য state দেখি
-        let hasClickedBefore = clickStateMap.get(targetElement) || false;
-        
-        if (!hasClickedBefore) {
-            // প্রথম ক্লিক: এড দেখান এবং স্টেট আপডেট করুন
-            clickStateMap.set(targetElement, true);
-            // ছোট ভিজুয়াল ফিডব্যাক - বাটনে টেক্সট পরিবর্তন না করে শুধু ব্যস্ত ইঙ্গিত
-            const originalText = targetElement.innerText;
-            if (targetElement.innerText && (targetElement.classList.contains('play-btn') || targetElement.classList.contains('download-btn'))) {
-                targetElement.innerText = "⏳ দেখুন...";
-                setTimeout(() => { if(targetElement) targetElement.innerText = originalText; }, 1500);
-            }
-            try {
-                await showAdsGramAd();
-                // এড দেখানোর পর সফলভাবে দ্বিতীয় ক্লিক উপলব্ধ হবে, কিন্তু পরবর্তী ক্লিকে আসল লিংকে যাবে।
-                // এখন কিছু করতে হবে না, শুধু ইউজারকে জানাবেন যে এখন দ্বিতীয় ক্লিকে কাজ হবে।
-                alert("✅ বিজ্ঞাপন সম্পূর্ণ! এখন আবার ক্লিক করে ভিডিও/ডাউনলোড লিংকে যান।");
-            } catch (err) {
-                // বিজ্ঞাপন ব্যর্থ হলেও ইউজারকে দ্বিতীয় ক্লিকের সুযোগ দেওয়া ভালো, সেক্ষেত্রেও স্টেট true করে দিই যাতে পরবর্তী ক্লিকে লিংক খোলে।
-                clickStateMap.set(targetElement, true);
-                alert("⚠️ বিজ্ঞাপন লোড হয়নি, তবে দ্বিতীয় ক্লিকে লিংক ওপেন হবে। আবার ক্লিক করুন।");
-            }
-        } else {
-            // দ্বিতীয় বা পরবর্তী ক্লিক: আসল ক্রিয়া (লিংক খোলা, ডাউনলোড ইত্যাদি)
-            if (onSecondClickAction) {
-                onSecondClickAction();
-            }
-            // ক্লিকের পর আবার রিসেট? না, আমরা চাই প্রতি আলাদা এলিমেন্টের জন্য প্রথম ক্লিকে এড, দ্বিতীয় ক্লিকে লিংক,
-            // তৃতীয় ক্লিকে আবার এড? সেটা ভাল এক্সপেরিয়েন্স না। বরং প্রতি এলিমেন্টের জন্য শুধু একবার এড বাধ্যতামূলক রাখা ভাল।
-            // মূল ফাংশনালিটি অনুযায়ী: প্রতিটি বাটন/কার্ডে প্রথম ক্লিকে শুধু একবার এড, তারপর সবসময় দ্বিতীয় ক্লিকে লিংক কাজ করবে।
-            // কিন্তু যদি ইউজার আবার পরে এড দেখতে চায়? না, কাঙ্খিত আচরণ নয়। আমরা এড একবার দেখানোর পর সেই এলিমেন্টে পরবর্তী সব ক্লিক সরাসরি কাজ করবে।
-            // সেক্ষেত্রে state true থাকতে পারে এবং ভবিষ্যতে সব ক্লিক একশন করবে। এটাই যুক্তিযুক্ত।
-        }
+  function renderThumbnails() {
+    const grid = document.getElementById('thumbGrid');
+    if (!grid) return;
+    const pageVideos = getCurrentPageVideos();
+    if (pageVideos.length === 0 && searchQuery) {
+      grid.innerHTML = `<div style="color:#fff;text-align:center;grid-column:1/-1;padding:40px;">🔍 কিছু পাওয়া যায়নি</div>`;
+      return;
     }
+    grid.innerHTML = '';
+    pageVideos.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      const thumbWrap = document.createElement('div');
+      thumbWrap.className = 'thumbnail-wrapper';
+      const img = document.createElement('img');
+      img.src = video.thumb;
+      img.alt = video.title;
+      img.className = 'thumbnail-img';
+      img.loading = 'lazy';
+      const iconDiv = document.createElement('div');
+      iconDiv.className = 'video-icon';
+      thumbWrap.appendChild(img);
+      thumbWrap.appendChild(iconDiv);
+      const badge = document.createElement('div');
+      badge.className = 'serial-badge';
+      badge.innerText = `#${video.serial}`;
+      thumbWrap.appendChild(badge);
+      const btnBar = document.createElement('div');
+      btnBar.className = 'button-bar';
+      const playBtn = document.createElement('button');
+      playBtn.className = 'play-btn';
+      playBtn.innerHTML = '▶ প্লে';
+      const downBtn = document.createElement('button');
+      downBtn.className = 'download-btn';
+      downBtn.innerHTML = '⬇ ডাউনলোড';
+      btnBar.appendChild(playBtn);
+      btnBar.appendChild(downBtn);
+      card.appendChild(thumbWrap);
+      card.appendChild(btnBar);
+      grid.appendChild(card);
 
-    // প্রতিটি ভিডিও কার্ডের জন্য হ্যান্ডলার (কার্ড ক্লিক)
-    function bindCardClickWithAd(cardElement, videoObj) {
-        // মূল একশন: ভিডিও প্লে (videoUrl)
-        const primaryAction = () => {
-            if (confirm(`"${videoObj.title}" ভিডিওটি প্লে করতে চান?`)) {
-                window.open(videoObj.videoUrl, '_blank');
-            }
-        };
-        const clickHandler = (event) => {
-            // এখানে targetElement হিসেবে cardElement ব্যবহার করব
-            handleWithAdFirst(event, cardElement, primaryAction);
-        };
-        cardElement.removeEventListener('click', cardElement._adClickHandler);
-        cardElement._adClickHandler = clickHandler;
-        cardElement.addEventListener('click', clickHandler);
-    }
-    
-    function bindPlayButtonWithAd(playBtn, videoObj) {
-        const primaryAction = () => {
-            if (confirm(`"${videoObj.title}" ভিডিওটি প্লে করবেন?`)) {
-                window.open(videoObj.videoUrl, '_blank');
-            }
-        };
-        const handler = (event) => {
-            event.stopPropagation();
-            handleWithAdFirst(event, playBtn, primaryAction);
-        };
-        playBtn.removeEventListener('click', playBtn._adPlayHandler);
-        playBtn._adPlayHandler = handler;
-        playBtn.addEventListener('click', handler);
-    }
-    
-    function bindDownloadButtonWithAd(downloadBtn, videoObj) {
-        const primaryAction = () => {
-            const a = document.createElement('a');
-            a.href = videoObj.downloadUrl;
-            a.download = `${videoObj.title.replace(/[^a-z0-9]/gi, '_')}.mp4`;
-            a.target = '_blank';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        };
-        const handler = (event) => {
-            event.stopPropagation();
-            handleWithAdFirst(event, downloadBtn, primaryAction);
-        };
-        downloadBtn.removeEventListener('click', downloadBtn._adDownHandler);
-        downloadBtn._adDownHandler = handler;
-        downloadBtn.addEventListener('click', handler);
-    }
-    
-    // ---------- অটো রিডাইরেক্ট ফাংশন (কোনো ক্লিক ছাড়া সরাসরি ফুলস্ক্রিন এড লিংকে) ----------
-    let redirectExecuted = false;
-    function autoRedirectToFullscreenAd() {
-        if (redirectExecuted) return;
-        redirectExecuted = true;
-        window.location.href = FULLSCREEN_AD_URL;
-    }
-    
-    let countdownSeconds = 8;
-    const countdownElement = document.getElementById('countdownDisplay');
-    if (countdownElement) {
-        countdownElement.innerText = `🎬 ফুলস্ক্রিন এড শুরু হবে: ${countdownSeconds} সেকেন্ডে`;
-        const timerInterval = setInterval(() => {
-            if (redirectExecuted) { clearInterval(timerInterval); return; }
-            countdownSeconds--;
-            if (countdownSeconds >= 0) {
-                if (countdownElement) countdownElement.innerText = `🎬 ফুলস্ক্রিন এড শুরু হবে: ${countdownSeconds} সেকেন্ডে`;
-                if (countdownSeconds === 0) clearInterval(timerInterval);
-            } else clearInterval(timerInterval);
-        }, 1000);
-    }
-    setTimeout(() => { autoRedirectToFullscreenAd(); }, 8000000);
-    
-    // ========== পেজিনেশন ও থাম্বনেল ব্যবস্থাপনা ==========
-    let currentPage = 1;
-    let searchQuery = "";
-    const ITEMS_PER_PAGE = 8;
-    
-    function getFilteredVideos() {
-        if (!searchQuery.trim()) return VIDEO_DATA;
-        return VIDEO_DATA.filter(v => v.title.toLowerCase().includes(searchQuery.toLowerCase()));
-    }
-    
-    function getTotalPages() {
-        return Math.ceil(getFilteredVideos().length / ITEMS_PER_PAGE);
-    }
-    
-    function getCurrentPageVideos() {
-        const filtered = getFilteredVideos();
-        const start = (currentPage - 1) * ITEMS_PER_PAGE;
-        return filtered.slice(start, start + ITEMS_PER_PAGE);
-    }
-    
-    function openPaginationLink(pageNumber) {
-        const link = PAGINATION_LINKS[pageNumber];
-        if(link) window.open(link, '_blank');
-        else alert(`পেজ ${pageNumber} - লিংক সংযুক্ত নয়`);
-    }
-    
-    // থাম্বনেল রেন্ডার (এড প্রথম ক্লিক যুক্ত)
-    function renderThumbnails() {
-        const grid = document.getElementById('thumbGrid');
-        if (!grid) return;
-        const pageVideos = getCurrentPageVideos();
-        if (pageVideos.length === 0 && searchQuery) {
-            grid.innerHTML = `<div style="color:white; text-align:center; grid-column:1/-1; padding:50px;">🔍 কোন ভিডিও পাওয়া যায়নি</div>`;
-            return;
+      bindCardClickWithAd(card, video);
+      bindPlayButtonWithAd(playBtn, video);
+      bindDownloadButtonWithAd(downBtn, video);
+    });
+  }
+
+  function renderPagination() {
+    const container = document.getElementById('paginationWrapper');
+    if (!container) return;
+    const totalPages = getTotalPages();
+    container.innerHTML = '';
+    for (let i = 1; i <= 10; i++) {
+      const pageBtn = document.createElement('div');
+      pageBtn.className = 'page-number';
+      if (i === currentPage && i <= totalPages) pageBtn.classList.add('active-page');
+      pageBtn.innerText = i;
+      pageBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPaginationLink(i);
+        if (i <= totalPages) {
+          currentPage = i;
+          renderThumbnails();
+          renderPagination();
         }
-        grid.innerHTML = '';
-        pageVideos.forEach(video => {
-            const card = document.createElement('div');
-            card.className = 'video-card';
-            const thumbWrap = document.createElement('div');
-            thumbWrap.className = 'thumbnail-wrapper';
-            const img = document.createElement('img');
-            img.src = video.thumb;
-            img.alt = video.title;
-            img.className = 'thumbnail-img';
-            img.loading = 'lazy';
-            const iconDiv = document.createElement('div');
-            iconDiv.className = 'video-icon';
-            thumbWrap.appendChild(img);
-            thumbWrap.appendChild(iconDiv);
-            const serialBadge = document.createElement('div');
-            serialBadge.className = 'serial-badge';
-            serialBadge.innerText = `#${video.serial}`;
-            thumbWrap.appendChild(serialBadge);
-            const btnBar = document.createElement('div');
-            btnBar.className = 'button-bar';
-            const playBtn = document.createElement('button');
-            playBtn.className = 'play-btn';
-            playBtn.innerHTML = '▶ প্লে';
-            const downBtn = document.createElement('button');
-            downBtn.className = 'download-btn';
-            downBtn.innerHTML = '⬇ ডাউনলোড';
-            
-            btnBar.appendChild(playBtn);
-            btnBar.appendChild(downBtn);
-            card.appendChild(thumbWrap);
-            card.appendChild(btnBar);
-            grid.appendChild(card);
-            
-            // এড ফার্স্ট ক্লিক বাইন্ডিং
-            bindCardClickWithAd(card, video);
-            bindPlayButtonWithAd(playBtn, video);
-            bindDownloadButtonWithAd(downBtn, video);
-        });
+      });
+      container.appendChild(pageBtn);
     }
+  }
+
+  function performSearch() {
+    const input = document.getElementById('searchInput');
+    searchQuery = input.value.trim();
     
-    function renderPagination() {
-        const container = document.getElementById('paginationWrapper');
-        if (!container) return;
-        const totalPages = getTotalPages();
-        const maxVisible = 10;
-        container.innerHTML = '';
-        for (let i = 1; i <= maxVisible; i++) {
-            const pageBtn = document.createElement('div');
-            pageBtn.className = 'page-number';
-            if (i === currentPage && i <= totalPages) pageBtn.classList.add('active-page');
-            pageBtn.innerText = i;
-            pageBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                // পেজিনেশন বাটনে এড ফার্স্ট ফিচার না, সরাসরি লিংক ওপেন + পেজ চেঞ্জ (যেমন আগের ফাংশন)
-                openPaginationLink(i);
-                if (i <= totalPages) {
-                    currentPage = i;
-                    renderThumbnails();
-                    renderPagination();
-                }
-            });
-            container.appendChild(pageBtn);
-        }
-    }
-    
-    function performSearch() {
-        const input = document.getElementById('searchInput');
-        searchQuery = input.value.trim();
-        currentPage = 1;
-        renderThumbnails();
-        renderPagination();
-    }
-    
-    function setupTelegram() {
-        const tg = document.getElementById('telegramGlowBtn');
-        if (tg) {
-            tg.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.open(TELEGRAM_URL, '_blank');
-            });
-        }
-    }
-    
-    function init() {
-        renderThumbnails();
-        renderPagination();
-        setupTelegram();
-        const searchBtn = document.getElementById('searchBtn');
-        const searchInput = document.getElementById('searchInput');
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
-        console.log("✅ গ্যালারি প্রস্তুত। ৮ সেকেন্ড পর অটো রিডাইরেক্ট, এবং প্রতিটি ভিডিও বাটন/কার্ডে প্রথম ক্লিকে AdsGram এড, দ্বিতীয় ক্লিকে মূল লিংক কার্যকর।");
-    }
-    
-    init();
-</script>
-</body>
-</html>
